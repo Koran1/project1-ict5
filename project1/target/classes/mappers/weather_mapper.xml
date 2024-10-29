@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reginfo">
+	<select id="getreginfo" parameterType="String" resultType="wthrvo">
+		select * from regioninfo where region = #{region}
+	</select>
+	
+	<delete id="delete">
+		delete from pjweather
+	</delete>
+	
+	<select id="insertwthrinfo" parameterType="pjwthrvo" resultType="int">
+	 	insert into pjweather (wthrDate, wthrTMin, wthrTMax, wthrSKY_PTY, wthrPOP, region)
+	 	values (#{wthrDate}, #{wthrTMin}, #{wthrTMax}, #{wthrSKY_PTY}, #{wthrPOP}, #{region})
+	</select>
+	
+	<select id="getwhtrinfo" parameterType="String" resultType="pjwthrvo">
+		select * from pjweather where region = #{region}
+	</select>
+	
+	<!-- resultMap 관련 -->
+	<resultMap id="weatherResultMap" type="com.ict.mytravellist.WTHR.vo.ResultMapVO">
+	    <id property="idx" column="wthrIdx" />
+	    <result property="date" column="wthrDate" />
+	    <result property="tmn" column="wthrTMin" />
+	    <result property="tmx" column="wthrTMax" />
+	    <result property="sky" column="wthrSKY_PTY" />
+	    <result property="pop" column="wthrPOP" />
+	    <result property="pm10" column="wthrPM10" />
+	    <result property="etc1" column="wthrEtc01" />
+	    <result property="etc2" column="wthrEtc02" />
+	    <result property="reg" column="region" />
+	</resultMap>
+	
+	<select id="getwhtrinfo2" parameterType="String" resultMap="weatherResultMap">
+		select * from pjweather where region = #{region}
+	</select>
+	
+	<resultMap id="resultMap2VO" type="com.ict.mytravellist.WTHR.vo.ResultMap2VO">
+	    <id property="reg" column="region"/>
+        <result property="id_short" column="reg_id_short"/>
+        <result property="name" column="reg_name"/>
+        <result property="nx" column="nx"/>
+        <result property="ny" column="ny"/>
+        <result property="id_long" column="reg_id_long"/>
+	</resultMap>
+	
+	<resultMap id="weatherResultMap2" type="com.ict.mytravellist.WTHR.vo.ResultMapVO">
+	    <id property="idx" column="wthrIdx" />
+	    <result property="date" column="wthrDate" />
+	    <result property="tmn" column="wthrTMin" />
+	    <result property="tmx" column="wthrTMax" />
+	    <result property="sky" column="wthrSKY_PTY" />
+	    <result property="pop" column="wthrPOP" />
+	    <result property="pm10" column="wthrPM10" />
+	    <result property="etc1" column="wthrEtc01" />
+	    <result property="etc2" column="wthrEtc02" />
+	    <result property="reg" column="region" />
+	    <collection property="resultMap2VO" ofType="com.ict.mytravellist.WTHR.vo.ResultMap2VO">
+	        <result property="reg" column="region"/>
+	        <result property="id_short" column="reg_id_short"/>
+	        <result property="name" column="reg_name"/>
+	        <result property="nx" column="nx"/>
+	        <result property="ny" column="ny"/>
+	        <result property="id_long" column="reg_id_long"/>
+	    </collection>
+	</resultMap>
+	
+	<select id="getwhtrinfo3" parameterType="String" resultMap="weatherResultMap2">
+		select * from pjweather w LEFT JOIN regioninfo r ON w.region = r.region
+	</select>
+</mapper>
