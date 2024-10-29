@@ -22,13 +22,21 @@
 		<typeAlias type="com.ict.mytravellist.VO.FAQVO"  alias="faqvo" />
 		<typeAlias type="com.ict.mytravellist.VO.QNAVO"  alias="qnavo" />
 		
-		
+		<typeAlias type="com.ict.mytravellist.vo.KakaoVO"  alias="kvo" />
+		<typeAlias type="com.ict.mytravellist.vo.NoticeVO"  alias="nvo" />
+		<typeAlias type="com.ict.mytravellist.vo.QNAVO"  alias="qvo" />
+		<typeAlias type="com.ict.mytravellist.vo.TourTalkVO"  alias="tourtvo" />
+		<typeAlias type="com.ict.mytravellist.vo.TravelDBVO"  alias="tdvo" />
+		<typeAlias type="com.ict.mytravellist.vo.TrvlPlanVO"  alias="tplvo" />
+		<typeAlias type="com.ict.mytravellist.vo.UserVO"  alias="uvo" />
+		<typeAlias type="com.ict.mytravellist.vo.WeatherVO"  alias="wvo" />
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/travel_mapper.xml" />
 		<mapper resource="mappers/weather_mapper.xml" />
 		<mapper resource="mappers/add_mapper.xml" />
+		<mapper resource="mappers/main_mapper.xml" />
 		
 	</mappers>
 </configuration>
