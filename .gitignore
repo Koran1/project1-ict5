@@ -3,4 +3,7 @@
 /project1/src/main/webapp/WEB-INF/spring/root-context.xml
 /project1/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml
 /project1/src/main/resources/props/jdbc.properties
-/target/m2e-wtp/web-resources/META-INF/maven/com.ict/mytravellist/pom.properties
+project1/target/m2e-wtp/web-resources/META-INF/maven/com.ict/mytravellist/pom.properties
+project1/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+project1/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+

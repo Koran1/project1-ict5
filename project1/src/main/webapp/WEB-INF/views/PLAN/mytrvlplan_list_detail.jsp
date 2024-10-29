@@ -52,6 +52,7 @@
 
         <div id="main_container">
 			
+			<h2>i am detail</h2>
 			
 		    
 			

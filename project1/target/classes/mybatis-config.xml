@@ -18,9 +18,9 @@
 		<typeAlias type="com.ict.mytravellist.WTHR.vo.WeatherVO" alias="wthrvo" />
 		
 		<typeAlias type="com.ict.mytravellist.PLAN.vo.TravelDBVO" alias="trvlvo" />
-		<typeAlias type="com.ict.mytravellist.VO.NoticeVO"  alias="noticevo" />
-		<typeAlias type="com.ict.mytravellist.VO.FAQVO"  alias="faqvo" />
-		<typeAlias type="com.ict.mytravellist.VO.QNAVO"  alias="qnavo" />
+		<typeAlias type="com.ict.mytravellist.vo.NoticeVO"  alias="noticevo" />
+		<typeAlias type="com.ict.mytravellist.vo.FAQVO"  alias="faqvo" />
+		<typeAlias type="com.ict.mytravellist.vo.QNAVO"  alias="qnavo" />
 		
 		<typeAlias type="com.ict.mytravellist.vo.KakaoVO"  alias="kvo" />
 		<typeAlias type="com.ict.mytravellist.vo.NoticeVO"  alias="nvo" />

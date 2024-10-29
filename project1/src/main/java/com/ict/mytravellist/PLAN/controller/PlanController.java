@@ -59,9 +59,20 @@ public class PlanController {
 	public ModelAndView goPLANCreate() { 
 		return new ModelAndView("PLAN/mytrvlplan_create");
 	}
+	
 	@RequestMapping("/mytrvlplan_list")
 	public ModelAndView goPLANList() { 
-		return new ModelAndView("PLAN/mytrvlplan_list");
+		ModelAndView mv = new ModelAndView("PLAN/mytrvlplan_list");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/mytrvlplan_list_detail")
+	public ModelAndView goPLANListDetail() { 
+		ModelAndView mv = new ModelAndView("PLAN/mytrvlplan_list_detail");
+		
+		
+		return mv;
 	}
 	
 	// 이거 아마 상모님한테 있을거임
