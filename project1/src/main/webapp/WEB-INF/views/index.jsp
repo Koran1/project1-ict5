@@ -24,6 +24,7 @@
 	<h3><a href="/main_page">MAIN123</a></h3>
 	<h3><a href="/mytrvlplan">여행관리</a></h3>
 	<h3><a href="/administrator">ADMIN</a></h3>
+	<h3><a href="/add_notice">공지사항</a></h3>
 	
 	<hr>
 	<h3>날씨 정보 보기</h3>
