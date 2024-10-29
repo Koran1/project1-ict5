@@ -43,7 +43,7 @@
 					 	<c:otherwise>
 					 		<a class="header_menu" href="/trvlPlan_go">여행계획</a>
 					 		<a class="header_menu login_mypage" href="/mypage_go"> 
-							<img src="resources/images/profile-m.png" alt="로그인 아이콘">${userId}님</a>
+							<img src="resources/images/profile.png" alt="로그인 아이콘">${userId}님</a>
 					 	</c:otherwise>
 					</c:choose>
 				</div>
