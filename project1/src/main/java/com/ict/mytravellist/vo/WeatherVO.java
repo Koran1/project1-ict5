@@ -1,7 +1,6 @@
-package com.ict.mytravellist.WTHR.vo;
+package com.ict.mytravellist.vo;
 
-public class PJWeatherVO {
-
+public class WeatherVO {
 	private String wthrDate, wthrTMin, wthrTMax, wthrSKY_PTY, wthrPOP, wthrPM10, wthrEtc01, wthrEtc02, region;
 
 	public String getWthrDate() {

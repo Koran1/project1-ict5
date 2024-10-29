@@ -1,6 +1,6 @@
 package com.ict.mytravellist.WTHR.vo;
 
-public class WeatherVO {
+public class RegionVO {
 	private String region, reg_id_short, reg_name, nx, ny, reg_id_long;
 
 	public String getRegion() {

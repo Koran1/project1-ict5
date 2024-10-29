@@ -1,4 +1,4 @@
-package com.ict.mytravellist.MAIN.vo;
+package com.ict.mytravellist.vo;
 
 public class TrvlPlanVO {
 	private String trvlPlanIdx, userId, region, trvlPlanSubject, trvlPlanDate, trvlPlantrrsrtNm1, trvlPlantrrsrtNm2,

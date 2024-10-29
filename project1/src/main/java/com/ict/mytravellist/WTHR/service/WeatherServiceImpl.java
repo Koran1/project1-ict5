@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ict.mytravellist.WTHR.dao.WeatherDAO;
-import com.ict.mytravellist.WTHR.vo.PJWeatherVO;
 import com.ict.mytravellist.WTHR.vo.ResultMapVO;
-import com.ict.mytravellist.WTHR.vo.WeatherVO;
+import com.ict.mytravellist.vo.WeatherVO;
+import com.ict.mytravellist.WTHR.vo.RegionVO;
 
 @Service
 public class WeatherServiceImpl implements WeatherService{
@@ -17,12 +17,12 @@ public class WeatherServiceImpl implements WeatherService{
 	private WeatherDAO weatherDAO;
 	
 	@Override
-	public WeatherVO getRegInfo(String region) {
+	public RegionVO getRegInfo(String region) {
 		return weatherDAO.getRegInfo(region);
 	}
 
 	@Override
-	public int insertWthrInfo(PJWeatherVO pvo) {
+	public int insertWthrInfo(WeatherVO pvo) {
 		return weatherDAO.insertWthrInfo(pvo);
 	}
 
@@ -32,7 +32,7 @@ public class WeatherServiceImpl implements WeatherService{
 	}
 
 	@Override
-	public List<PJWeatherVO> getWthrInfo(String region) {
+	public List<WeatherVO> getWthrInfo(String region) {
 		return weatherDAO.getWthrInfo(region);
 	}
 	

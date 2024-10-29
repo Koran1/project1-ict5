@@ -1,4 +1,4 @@
-package com.ict.mytravellist.MAIN.vo;
+package com.ict.mytravellist.vo;
 
 public class TourTalkVO {
 	private String tourTalkIdx, trrsrtNm, tourTalkContent, tourTalkReg, tourTalkEtc01, tourTalkEtc02, tourTalkIcon;

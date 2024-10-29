@@ -8,8 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ict.mytravellist.MAIN.vo.TravelDBVO;
-import com.ict.mytravellist.MAIN.vo.WeatherVO;
+import com.ict.mytravellist.vo.TravelDBVO;
+import com.ict.mytravellist.vo.WeatherVO;
 
 @Repository
 public class MainDAOImpl implements MainDAO{

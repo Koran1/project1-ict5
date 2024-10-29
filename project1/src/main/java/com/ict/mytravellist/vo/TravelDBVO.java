@@ -1,4 +1,4 @@
-package com.ict.mytravellist.MAIN.vo;
+package com.ict.mytravellist.vo;
 
 public class TravelDBVO {
 	private String travelIdx, trrsrtNm, trrsrtSe, rdnmadr,	lnmadr,	latitude, longitude, ar, cnvnncFclty, recrtClturFclty, mvmAmsmtFclty, hospitalityFclty,	stayngInfo,	appnDate, sportFclty, aceptncCo, prkplceCo,	trrsrtIntrcn, phoneNumber, institutionNm, institutionAdr, referenceDate, instt_code, placeImg01, placeImg02, placeImg03, placeImg04, region, touritEtc01, touritEtc02, touritEtc03, touritEtc04, touritEtc05;

@@ -1,4 +1,4 @@
-package com.ict.mytravellist.MAIN.vo;
+package com.ict.mytravellist.vo;
 
 public class KakaoVO {
 	private String access_token, refresh_token, token_type, scope;

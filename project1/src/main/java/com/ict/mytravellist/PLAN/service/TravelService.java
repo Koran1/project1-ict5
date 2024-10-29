@@ -2,7 +2,7 @@ package com.ict.mytravellist.PLAN.service;
 
 import java.util.List;
 
-import com.ict.mytravellist.PLAN.vo.TravelDBVO;
+import com.ict.mytravellist.vo.TravelDBVO;
 
 public interface TravelService {
 	public List<TravelDBVO> selectTravelList();

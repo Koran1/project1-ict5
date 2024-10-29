@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ict.mytravellist.PLAN.vo.TravelDBVO;
+import com.ict.mytravellist.vo.TravelDBVO;
 
 @Repository
 public class TravelDAOImpl implements TravelDAO{

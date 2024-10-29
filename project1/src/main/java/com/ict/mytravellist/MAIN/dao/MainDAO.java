@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.ict.mytravellist.MAIN.vo.TravelDBVO;
-import com.ict.mytravellist.MAIN.vo.WeatherVO;
+import com.ict.mytravellist.vo.TravelDBVO;
+import com.ict.mytravellist.vo.WeatherVO;
 
 @Mapper
 public interface MainDAO {

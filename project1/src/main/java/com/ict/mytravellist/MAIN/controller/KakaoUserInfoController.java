@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-import com.ict.mytravellist.MAIN.vo.KakaoUserResponse;
-import com.ict.mytravellist.MAIN.vo.KakaoVO;
+import com.ict.mytravellist.vo.KakaoUserResponse;
+import com.ict.mytravellist.vo.KakaoVO;
 
 @RestController
 public class KakaoUserInfoController {

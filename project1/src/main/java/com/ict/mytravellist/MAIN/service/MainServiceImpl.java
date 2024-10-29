@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ict.mytravellist.MAIN.dao.MainDAO;
-import com.ict.mytravellist.MAIN.vo.TravelDBVO;
-import com.ict.mytravellist.MAIN.vo.WeatherVO;
+import com.ict.mytravellist.vo.TravelDBVO;
+import com.ict.mytravellist.vo.WeatherVO;
 
 @Service
 public class MainServiceImpl implements MainService {

@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.ict.mytravellist.MAIN.service.MainServiceImpl;
-import com.ict.mytravellist.MAIN.vo.TravelDBVO;
+import com.ict.mytravellist.vo.TravelDBVO;
 
 @RestController
 public class MainController {

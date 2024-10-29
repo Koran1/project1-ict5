@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ict.mytravellist.PLAN.service.TravelService;
-import com.ict.mytravellist.PLAN.vo.TravelDBVO;
 import com.ict.mytravellist.WTHR.service.WeatherService;
+import com.ict.mytravellist.vo.TravelDBVO;
 
 @Controller
 public class PlanController {

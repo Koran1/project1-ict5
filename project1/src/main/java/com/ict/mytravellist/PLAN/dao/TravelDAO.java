@@ -2,7 +2,7 @@ package com.ict.mytravellist.PLAN.dao;
 
 import java.util.List;
 
-import com.ict.mytravellist.PLAN.vo.TravelDBVO;
+import com.ict.mytravellist.vo.TravelDBVO;
 
 public interface TravelDAO {
 	public List<TravelDBVO> selectTravelList();

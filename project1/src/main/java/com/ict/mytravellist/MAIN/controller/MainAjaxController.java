@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.ict.mytravellist.MAIN.service.MainService;
-import com.ict.mytravellist.MAIN.vo.TravelDBVO;
+import com.ict.mytravellist.vo.TravelDBVO;
 
 @RestController
 public class MainAjaxController {

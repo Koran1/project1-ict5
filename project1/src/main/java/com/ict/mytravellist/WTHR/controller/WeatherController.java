@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ict.mytravellist.WTHR.service.WeatherService;
-import com.ict.mytravellist.WTHR.vo.PJWeatherVO;
-import com.ict.mytravellist.WTHR.vo.WeatherVO;
+import com.ict.mytravellist.WTHR.vo.RegionVO;
+import com.ict.mytravellist.vo.WeatherVO;
 
 @Controller
 public class WeatherController {
@@ -58,7 +58,7 @@ public class WeatherController {
 		int tMaxIdx = 0;
 
 		while (i < 3) {
-			PJWeatherVO pvo = new PJWeatherVO();
+			WeatherVO pvo = new WeatherVO();
 			tMinIdx = shorts.indexOf("TMN", tMinIdx + 1);
 			String wthrTMin = shorts.substring(tMinIdx + 79, shorts.indexOf("</fcstValue>", tMinIdx) - 2);
 			String wthrDate = shorts.substring(tMinIdx + 24, tMinIdx + 28) + "-"
@@ -120,7 +120,7 @@ public class WeatherController {
 		LocalDate now = LocalDate.now();
 		while (i < 11) {
 
-			PJWeatherVO pvo = new PJWeatherVO();
+			WeatherVO pvo = new WeatherVO();
 			String wthrDate = now.plusDays(i).toString();
 
 			tMinIdx = longs.indexOf(String.valueOf("<taMin" + i + ">"));
@@ -174,7 +174,7 @@ public class WeatherController {
 	}
 
 	public String weatherShort(String region) {
-		WeatherVO wvo = weatherService.getRegInfo(region);
+		RegionVO wvo = weatherService.getRegInfo(region);
 
 		String nx = wvo.getNx();
 		String ny = wvo.getNy();
@@ -241,7 +241,7 @@ public class WeatherController {
 	}
 
 	public String weatherLong(String region) {
-		WeatherVO wvo = weatherService.getRegInfo(region);
+		RegionVO wvo = weatherService.getRegInfo(region);
 		String regId = wvo.getReg_id_short();
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -316,7 +316,7 @@ public class WeatherController {
 		HttpURLConnection conn = null;
 		StringBuilder sb = null;
 
-		WeatherVO wvo = weatherService.getRegInfo(region);
+		RegionVO wvo = weatherService.getRegInfo(region);
 		String regIdLong = wvo.getReg_id_long();
 
 		try {

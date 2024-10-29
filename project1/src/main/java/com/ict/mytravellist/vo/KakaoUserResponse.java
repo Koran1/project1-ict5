@@ -1,6 +1,6 @@
-package com.ict.mytravellist.MAIN.vo;
+package com.ict.mytravellist.vo;
 
-import com.ict.mytravellist.MAIN.vo.KakaoUserResponse.Properties.Kakao_account;
+import com.ict.mytravellist.vo.KakaoUserResponse.Properties.Kakao_account;
 
 public class KakaoUserResponse {
     private Long id;

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ict.mytravellist.PLAN.dao.TravelDAO;
-import com.ict.mytravellist.PLAN.vo.TravelDBVO;
+import com.ict.mytravellist.vo.TravelDBVO;
 
 @Service
 public class TravelServiceImpl implements TravelService{

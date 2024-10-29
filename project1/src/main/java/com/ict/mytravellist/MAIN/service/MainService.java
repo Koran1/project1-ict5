@@ -2,8 +2,8 @@ package com.ict.mytravellist.MAIN.service;
 
 import java.util.List;
 
-import com.ict.mytravellist.MAIN.vo.TravelDBVO;
-import com.ict.mytravellist.MAIN.vo.WeatherVO;
+import com.ict.mytravellist.vo.TravelDBVO;
+import com.ict.mytravellist.vo.WeatherVO;
 
 public interface MainService {
 
