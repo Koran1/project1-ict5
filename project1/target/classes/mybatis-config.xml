@@ -18,6 +18,9 @@
 		<typeAlias type="com.ict.mytravellist.WTHR.vo.WeatherVO" alias="wthrvo" />
 		
 		<typeAlias type="com.ict.mytravellist.PLAN.vo.TravelDBVO" alias="trvlvo" />
+		<typeAlias type="com.ict.mytravellist.VO.NoticeVO"  alias="noticevo" />
+		<typeAlias type="com.ict.mytravellist.VO.FAQVO"  alias="faqvo" />
+		<typeAlias type="com.ict.mytravellist.VO.QNAVO"  alias="qnavo" />
 		
 		
 	</typeAliases>
@@ -25,6 +28,7 @@
 	<mappers>
 		<mapper resource="mappers/travel_mapper.xml" />
 		<mapper resource="mappers/weather_mapper.xml" />
+		<mapper resource="mappers/add_mapper.xml" />
 		
 	</mappers>
 </configuration>

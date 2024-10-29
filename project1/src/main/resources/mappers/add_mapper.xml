@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="adds">
+ 	<!-- 공지사항 초기화면 -->
+	<!--
+    <select id="noticeList" resultType="noticevo">
+        (
+        SELECT *
+        FROM pjnotice
+        WHERE noticeStatus = 'on' AND noticeLevel = 1
+        ORDER BY noticeidx DESC
+        LIMIT 5
+		)
+        UNION ALL
+		(
+        SELECT *
+        FROM pjnotice
+        WHERE noticeStatus = 'on'
+        ORDER BY noticeidx DESC
+        LIMIT 10000
+        )
+    </select> -->
+    
+    <select id="noticeList" resultType="noticevo">
+    	SELECT *
+        FROM pjnotice
+        WHERE noticeStatus = 'on' AND noticeLevel = 1
+        ORDER BY noticeidx DESC
+        LIMIT 5
+    </select>
+    
+    <select id="noticeList2" resultType="noticevo">
+    	SELECT *
+        FROM pjnotice
+        WHERE noticeStatus = 'on'
+        ORDER BY noticeidx DESC
+        LIMIT 10000
+    </select>
+	
+    <!-- 공지사항 상세화면 -->
+    <select id="noticeDetail" parameterType="String" resultType="noticevo">
+    	select * from pjnotice where noticeIdx=#{noticeIdx}
+    </select>
+    
+    <!-- FAQ 초기화면 -->
+    <select id="faqList" resultType="faqvo">
+    	select * from pjfaq
+    </select>
+    
+    <!-- QNA 초기화면 -->
+    <select id="qnaList" resultType="qnavo">
+    	select 
+		q.qnaIdx, q.userId, q.qnaSubject, q.qnaFile, q.qnaContent, q.qnaReg, q.qnaReSubject, q.qnaReContent, q.qnaReRegdate, q.qnaStatus, q.qnaEtc01, q.qnaEtc02 
+		from pjqna q 
+		inner join pjcustomer c 
+		on q.userId = c.userId
+		order by q.qnaReg desc
+    </select>
+    
+    <!-- QNA 상세화면-User -->
+    <select id="qnaDetail" parameterType="String" resultType="qnavo">
+    	select 
+		q.qnaIdx, q.userId, q.qnaSubject, q.qnaSubject, q.qnaFile, q.qnaContent, q.qnaReg, q.qnaReSubject, q.qnaReContent, q.qnaReRegdate, q.qnaStatus, q.qnaEtc01, q.qnaEtc02 
+		from pjqna q 
+		inner join pjcustomer c 
+		on q.userId = c.userId 
+		where q.qnaIdx=#{qnaIdx}
+    </select>
+    
+    <!-- QNA 상세화면-Admin -->
+    <select id="qnaDetailAdmin" parameterType="String" resultType="qnavo">
+    	select 
+		q.qnaIdx, q.userId, q.qnaSubject, q.qnaSubject, q.qnaFile, q.qnaContent, q.qnaReg, q.qnaReSubject, q.qnaReContent, q.qnaReRegdate, q.qnaStatus, q.qnaEtc01, q.qnaEtc02 
+		from pjqna q 
+		inner join pjcustomer c 
+		on q.userId = c.userId 
+		where q.qnaIdx=#{qnaIdx}
+    </select>
+    
+    <!-- QNA 질문하기 화면 -->
+    <insert id="qnaInsert" parameterType="qnavo">
+    	insert into pjqna(userId, qnaSubject, qnaFile, qnaContent, qnaReg) 
+    	values (#{userId}, #{qnaSubject}, #{qnaFile}, #{qnaContent}, now())
+    </insert>
+ </mapper>
