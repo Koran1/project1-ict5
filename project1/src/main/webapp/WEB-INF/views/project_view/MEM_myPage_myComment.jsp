@@ -86,10 +86,19 @@
 		   우선순위4: 내 관심지역 변경버튼 클릭 시 팝업창으로 선택 가능하게 기능 구현
 		   우선순위5: 수정버튼 클릭 시 수정하는 로직 구현  */
 			
-		$("#comment_table").on("click", ".page_num", function() {
-			let nowPage = $(this).text();
+	
+		 
+		 $("#comment_table").on("click", ".page_num", function() { // 페이지 번호 클릭시 이동이벤트
+			 let nowPage = $(this).text();
 			getComment(nowPage);
 		});
+		 
+		 $("#comment_table").on("click", ".page_btn", function() {  // 페이지 이전/다음으로 클릭 시 이동이벤트
+			 	
+				 let nowPage = $(this).attr("name");
+			 	console.log("nowPage: ", nowPage);
+				getComment(nowPage);
+		   });
 		    
 		function getComment(nowPage) { // 내 댓글 리스트 가져오기
 			$.ajax({
@@ -100,13 +109,13 @@
 				success: function(data) {
 						if (data.list == null || (data.list).length === 0) {
 							$("#tbody").empty();
+							tbody = "";
 							tbody += "<tr><td colspan='5'>등록된 댓글이 없습니다.</td></tr>";
 							$("#tbody").append(tbody);
 						}else {
 							makeTBody(data.list);						
 						}
 						makeTfoot(data.paging);
-					console.log("getcomment success");
 				}, // success 괄호 
 				error: function() {
 					alert("서버 에러 발생");
@@ -132,27 +141,24 @@
 		
 		function makeTfoot(paging) {
 			$("#tfoot").empty();
-				console.log(paging);
 				tfoot = "";
 				tfoot += "<tr>";
 				tfoot += "<td colspan='5'><ul>";
-				if (paging.startBlock < paging.blockPerPage) {
-					tfoot += "<li>이전으로</li>";
-				}else {
-					tfoot += "<li class='page_btn' id='previous'>이전으로</li>";
+				if (paging.startBlock > paging.blockPerPage) {
+					let previous = paging.startBlock -1;
+					tfoot += "<li class='page_btn' id='previous' name='" + previous + "'>이전으로</li>";
 				}
 				
 				for (let i = paging.startBlock; i <= paging.endBlock; i++) {
 					if (i == paging.nowPage) {
-						tfoot += "<li id='now' name='' class='page_num'>"+ i +"</li>";
+						tfoot += "<li id='now' class='page_num'>"+ i +"</li>";
 					}else {
 						tfoot += "<li class='page_num'>"+ i + "</li>";
 					}
 				}
-				if (paging.startBlock < paging.blockPerPage) {
-					tfoot += "<li>다음으로</li>";
-				}else {
-					tfoot += "<li class='page_btn' id='next'>다음으로</li>";
+				if (paging.totalPage > paging.endBlock) {
+					let next = paging.endBlock + 1;
+					tfoot += "<li class='page_btn' id='next' name='"+ next +"'>다음으로</li>";
 				}
 				tfoot += "</ul></td>";
 				tfoot += "</tr>";
@@ -172,9 +178,15 @@
 		                if (result == "0") {
 		                    alert("삭제 실패");
 		                } else if (result == "1") {
-		                    $("#tbody").empty();
-		                    
-		                    getComment(nowPage);
+		                	let tbody = document.querySelector("#tbody");
+		                	let rows = tbody.rows.length;
+		                	if (rows === 1) {
+			                	$("#tbody").empty();
+			                    getComment(nowPage-1);
+							}else { 
+			                	$("#tbody").empty();
+			                    getComment(nowPage);
+						}
 		                }
 		            }, 
 		            error: function() {
