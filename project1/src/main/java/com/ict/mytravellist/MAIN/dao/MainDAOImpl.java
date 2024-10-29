@@ -63,7 +63,7 @@ public class MainDAOImpl implements MainDAO{
     public List<TravelDBVO> getDetailList(String trrsrtNm) {
         try {
             List<TravelDBVO> list = sqlSessionTemplate.selectList("main.getDetailList", trrsrtNm);
-            System.out.println("getDetailList MainDAO 통과");
+            // System.out.println("getDetailList MainDAO 통과");
             return list;
         } catch (Exception e) {
             System.out.println("getDetailList 검색 중 오류 발생: " + e.getMessage());

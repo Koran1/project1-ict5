@@ -38,7 +38,7 @@
 					 	<c:when test="${empty userId}">
 					 		<a class="header_menu" href="/login_go">여행계획</a>
 					 		<a class="header_menu login_mypage" href="/login_go"> 
-							<img src="resources/images/profile-m.png" alt="로그인 아이콘">로그인	</a>
+							<img src="resources/images/profile.png" alt="로그인 아이콘">로그인	</a>
 					 	</c:when>
 					 	<c:otherwise>
 					 		<a class="header_menu" href="/trvlPlan_go">여행계획</a>

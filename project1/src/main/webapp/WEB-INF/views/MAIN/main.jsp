@@ -121,7 +121,7 @@
 /* 드디어 박스를 가로로 정렬하는데 성공!!*/
 #travel-list {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     width: calc(370px * 3 + 60px); /* 3개 박스 + 간격 계산 */
     opacity: 1;
     transition: opacity 0.8s ease-in-out; /* 페이드 효과 */
@@ -154,9 +154,9 @@
 		    loadTravelList();
 
 		    // 5초마다 리스트 갱신
-		    setInterval(() => {
+/* 		    setInterval(() => {
 		        loadTravelList();
-		    }, 20000); 
+		    }, 20000);  */
 		    
 		    function loadTravelList() {
 		    	$("#travel-list").empty()
@@ -165,7 +165,7 @@
 		    	    method: "post",
 		    	    dataType: "json",
 		    	    success: function (data) {
-		    	        console.log("응답 데이터:", data);
+		    	        // console.log("응답 데이터:", data);
 		    	        if (data.length === 0) {
 		    	            console.warn("받아온 데이터가 없습니다.");
 		    	            return;
@@ -178,7 +178,7 @@
 		    	            let trrsrtNm = item.trrsrtNm;
 
 		    	            table += "<div class='travel_box'>";
-		    	            table += "<a href='" + travelIdx + "' class='travel_image'>";
+		    	            table += "<a href='/travelDetail_go?travelIdx=" + travelIdx + "' class='travel_image'>";
 		    	            table += "<img src='" + placeImg01 + "' alt='" + trrsrtNm + "'></a>";
 		    	            table += "<div class='travel_weather'>";
 		    	            table += "<div class='travel_location'>";
@@ -205,7 +205,6 @@
 		    	        });
 
 		    	        $("#travel-list").html(table); // HTML 주입
-		                $("#travel-list").fadeIn(800); // 새 리스트 페이드 인
 		    	    },
 		    	    error: function (xhr, status, error) {
 		    	        console.error("데이터를 가져오는 데 실패했습니다:", error);

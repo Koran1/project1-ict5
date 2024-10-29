@@ -43,7 +43,7 @@ public class MainServiceImpl implements MainService {
     @Override
     public List<TravelDBVO> getDetailList(String travelIdx) {
         List<TravelDBVO> list = mainDAO.getDetailList(travelIdx);
-        System.out.println("getDetailList MainService 통과");
+        // System.out.println("getDetailList MainService 통과");
         return list;
     }
 
