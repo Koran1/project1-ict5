@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+
+/* footer */
+footer {
+	border-top: 1px solid #7bbe6e; /* 구분선 추가 */
+	padding-top: 10px; /* 내용과 구분선 사이에 패딩 */
+}
+
+.footer_container {
+	width: 100%;
+	display: flex;
+	align-items: center; /* 세로 중앙 정렬 */
+	justify-content: center; /* 가로 중앙 정렬 */
+	padding: 10px;
+	background-color: white;
+}
+
+.footer_wrapper {
+	height: 100px;
+	padding: 0px 16px; /* 상하 좌우 */
+}
+
+.footer_left {
+	
+}
+
+.footer_center, a {
+	text-decoration: none; /* 밑줄 제거 */
+	color: inherit; /* 부모 요소의 텍스트 색상과 동일하게 설정 */
+	flex: 1 1 40%;
+}
+
+.footer_center_top {
+	display: flex;
+	margin: 10px 20px 30px 20px; /* 상하좌우 */
+	text-align: center;
+	font-family: "Noto Sans KR", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 550;
+	font-style: normal;
+}
+
+.footer_center_bottom {
+	
+}
+
+.footer_right {
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
