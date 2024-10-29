@@ -21,7 +21,7 @@
 </style>
 <body>
 	<h1>index page</h1>
-	<h3><a href="/main_page">MAIN</a></h3>
+	<h3><a href="/main_page">MAIN123</a></h3>
 	<h3><a href="/mytrvlplan">여행관리</a></h3>
 	<h3><a href="/administrator">ADMIN</a></h3>
 	
