@@ -3,7 +3,6 @@ package com.ict.mytravellist.MAIN.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,9 +24,9 @@ public class MainController {
 	
 	// HOME
 	@GetMapping("/main_go")
-	public String maiPage(Model model) {
+	public ModelAndView maiPage(Model model) {
 		System.out.println("main_go controller 통과");
-		return "main";
+		return new ModelAndView("MAIN/main");
 	}
 	
 	// 랜덤 지역 이미지 불러오기
@@ -38,7 +37,7 @@ public class MainController {
 		if(list != null) {
 			Gson gson = new Gson();
 			String jsonString = gson.toJson(list);
-			System.out.println();
+			// System.out.println();
 			return jsonString;
 		}
 		return "fail";
@@ -47,7 +46,7 @@ public class MainController {
     // 키워드로 검색
     @GetMapping("/search_go")
     public ModelAndView mainSearch(@ModelAttribute("keyword") String keyword) {
-        ModelAndView mv = new ModelAndView("search");
+        ModelAndView mv = new ModelAndView("MAIN/search");
         List<TravelDBVO> list = mainService.getSearchList(keyword);
 
         mv.addObject("list", list);
@@ -62,7 +61,7 @@ public ModelAndView regionSearch(
         @RequestParam("keyword") String keyword,
         @RequestParam(value = "region", required = false) String region) {
 
-    	ModelAndView mv = new ModelAndView("search");
+    	ModelAndView mv = new ModelAndView("MAIN/search");
         List<TravelDBVO> list;
 
         if (region == null || region.isEmpty()) {
@@ -81,7 +80,7 @@ public ModelAndView regionSearch(
     // 특정 관광지의 상세 정보 조회
     @GetMapping("/detail_go")
     public ModelAndView detail(@ModelAttribute("travelIdx") String trrsrtNm) {
-        ModelAndView mv = new ModelAndView("travlDetail");
+        ModelAndView mv = new ModelAndView("MAIN/travlDetail");
         List<TravelDBVO> list = mainService.getDetailList(trrsrtNm);
 
         if (!list.isEmpty()) {
@@ -98,7 +97,7 @@ public ModelAndView regionSearch(
     @GetMapping("/kakaoMap")
 	public ModelAndView kakaoMap() {
     	
-		return new ModelAndView("kakaoMap");
+		return new ModelAndView("MAIN/travlDetail");
 	}	
 	
 	

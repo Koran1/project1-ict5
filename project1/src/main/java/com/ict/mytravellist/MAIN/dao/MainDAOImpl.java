@@ -24,15 +24,15 @@ public class MainDAOImpl implements MainDAO{
 	// 랜덤 지역 이미지 불러오기
 	@Override
 	public List<TravelDBVO> getRandomList() {
-	    System.out.println("getRandomList MainDAO 통과");
-	    return sqlSessionTemplate.selectList("search.randomList");  // 랜덤한 여행지 반환
+	    // System.out.println("getRandomList MainDAO 통과");
+	    return sqlSessionTemplate.selectList("main.randomList");  // 랜덤한 여행지 반환
 	}
 	
     // 키워드로 검색하는 메서드
 	@Override
     public List<TravelDBVO> getSearchList(String keyword) {
         try {
-            List<TravelDBVO> list = sqlSessionTemplate.selectList("search.getSearchList", keyword);
+            List<TravelDBVO> list = sqlSessionTemplate.selectList("main.getSearchList", keyword);
             System.out.println("getSearchList MainDAO 통과");
             return list;
         } catch (Exception e) {
@@ -49,7 +49,7 @@ public class MainDAOImpl implements MainDAO{
             map.put("keyword", keyword);
             map.put("region", region);
 
-            List<TravelDBVO> list = sqlSessionTemplate.selectList("search.getSearchKeyRegion", map);
+            List<TravelDBVO> list = sqlSessionTemplate.selectList("main.getSearchKeyRegion", map);
             System.out.println("searchKeywordAndRegion MainDAO 통과");
             return list;
         } catch (Exception e) {
@@ -62,7 +62,7 @@ public class MainDAOImpl implements MainDAO{
 	@Override
     public List<TravelDBVO> getDetailList(String trrsrtNm) {
         try {
-            List<TravelDBVO> list = sqlSessionTemplate.selectList("search.getDetailList", trrsrtNm);
+            List<TravelDBVO> list = sqlSessionTemplate.selectList("main.getDetailList", trrsrtNm);
             System.out.println("getDetailList MainDAO 통과");
             return list;
         } catch (Exception e) {

@@ -19,7 +19,7 @@ public class MainServiceImpl implements MainService {
 	@Override
     public List<TravelDBVO> getRandomList() {
     	List<TravelDBVO> list = mainDAO.getRandomList();
-        System.out.println("getRandomList MainServiceImpl 통과");
+        // System.out.println("getRandomList MainServiceImpl 통과");
         return list;
     }
 	 

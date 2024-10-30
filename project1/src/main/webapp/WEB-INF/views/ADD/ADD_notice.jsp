@@ -131,6 +131,7 @@
         color: black;
     }
     .tab-notice-menu {
+    	display: block;
         text-decoration: none;
         color: inherit;
     }
