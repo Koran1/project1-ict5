@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -76,6 +76,8 @@
 	padding: 20px;
 	box-sizing: border-box;
 	height: 100%; /* 부모 높이에 맞춤 */
+	align-content: center;
+	justify-content: center;
 }
 
 .main_right {
@@ -123,7 +125,7 @@
 	width: 65%;
 	margin: 10px auto;
 	padding: 20px;
-	box-sizing: border-box;
+	/* box-sizing: border-box; */
 }
 
 .details_box {
@@ -134,16 +136,18 @@
 }
 
 /* 지도 섹션 */
-#map {
-	background-color: #e9f7ef;
-	padding: 15px;
-	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	display: flex;
+.kakaoMap {
+	width: 100%;
 	align-items: center;
 	justify-content: center;
-	height: 100%;
 }
+.maps{
+	line-height: 1.5;
+	padding: 20px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #ddd;
+}
+
 
 /* 여행톡 섹션 */
 #tourTalk {
@@ -155,21 +159,29 @@
 	flex-direction: column;
 	height: 100%;
 }
+.title{
+	font-size: 20px;
+	color: rgb(100, 50, 15, 10);
+}
 </style>
 </head>
 <body>
-	<jsp:include page="header.jsp"/>
+	<jsp:include page="header.jsp" />
 	<!-- 고정된 메뉴 섹션 -->
 	<div class="menu_container">
 		<ul>
 			<li class="select_tab on">
-				<button class="menu-btn" onclick="scrollToSection('photos')">사진보기</button></li>
+				<button class="menu-btn" onclick="scrollToSection('photos')">사진보기</button>
+			</li>
 			<li class="select_tab">
-				<button class="menu-btn" onclick="scrollToSection('details')">상세보기</button></li>
+				<button class="menu-btn" onclick="scrollToSection('details')">상세보기</button>
+			</li>
 			<li class="select_tab">
-				<button class="menu-btn" onclick="scrollToSection('map')">지도보기</button></li>
+				<button class="menu-btn" onclick="scrollToSection('map')">지도보기</button>
+			</li>
 			<li class="select_tab">
-				<button class="menu-btn" onclick="scrollToSection('travelTalk')">여행톡</button></li>
+				<button class="menu-btn" onclick="scrollToSection('tourTalk')">여행톡</button>
+			</li>
 		</ul>
 	</div>
 
@@ -191,27 +203,29 @@
 				</div>
 			</div>
 			<!-- 상세보기 섹션 -->
-			<div class="travel_info" id="detail">
-				<h4>상세정보</h4>
+			<div id="details"></div>
+			<div class="travel_info">
+				<div class="title">상세정보</div>
 				<hr>
 				<div class="details_box">
 					<ul>
 						<li><b>관광지 소개: ${list.trrsrtIntrcn}</b></li>
 						<li>
-							<!-- rdnmadr와 lnmadr 둘 다 없는 경우 -->
-							<c:if test="${empty list.rdnmadr and empty list.lnmadr}">
+							<!-- rdnmadr와 lnmadr 둘 다 없는 경우 --> 
+							<c:if
+								test="${empty list.rdnmadr and empty list.lnmadr}">
 								<!-- 아무것도 출력하지 않음 -->
-							</c:if>
-							<!-- rdnmadr만 있는 경우 -->
-							<c:if test="${not empty list.rdnmadr and empty list.lnmadr}">
+							</c:if> <!-- rdnmadr만 있는 경우 --> 
+							<c:if
+								test="${not empty list.rdnmadr and empty list.lnmadr}">
 								<p>주소: ${list.rdnmadr}</p>
-							</c:if>
-							<!-- lnmadr만 있는 경우 -->
-							<c:if test="${empty list.rdnmadr and not empty list.lnmadr}">
+							</c:if> <!-- lnmadr만 있는 경우 --> 
+							<c:if
+								test="${empty list.rdnmadr and not empty list.lnmadr}">
 								<p>주소: ${list.lnmadr}</p>
-							</c:if>
-							<!-- rdnmadr와 lnmadr 둘 다 있는 경우 -->
-							<c:if test="${not empty list.rdnmadr and not empty list.lnmadr}">
+							</c:if> <!-- rdnmadr와 lnmadr 둘 다 있는 경우 --> 
+							<c:if
+								test="${not empty list.rdnmadr and not empty list.lnmadr}">
 								<p>주소: ${list.rdnmadr}</p>
 							</c:if>
 						</li>
@@ -224,21 +238,19 @@
 						<li>업데이트 일자: ${list.referenceDate}</li>
 					</ul>
 				</div>
-			</div>
+			
 
 			<!-- 카카오 지도 섹션 -->
-			<div class="kakaoMap" id="map">
-				<h2>관광지 위치</h2>
-				<div id="map" style="width: 70%; height: 350px;"></div>
+			<div class="title">지도보기</div><br>
+			<div class="kakaoMap" id="kakaoMap">
+
+				<div id="map" class="map" style="width: 100%; height: 450px;"></div>
 				<!-- travelIdx 검색해서 ${list.latitude}, ${list.longitude} 정보를 통해 아래 마커 위치를 지정 -->
 			</div>
 
 			<!-- 여행톡 섹션 -->
-			<div class="tourTalk" id="tourTalk">
-				<h2>여행톡</h2>
-				<p>BBS</p>
-			</div>
-
+			<jsp:include page="tourTalk.jsp" />
+		</div>
 
 		</div>
 
@@ -247,8 +259,10 @@
 		</div>
 	</div>
 
-	<jsp:include page="footer.jsp"/>
+	<jsp:include page="footer.jsp" />
 
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=590d5be37368c91772ba5516b2944ed1"></script>
 	<script type="text/javascript">
 	    // Controller로부터 전달된 데이터를 자바스크립트 변수에 할당
 	    const lat = ${list.latitude};
@@ -256,10 +270,7 @@
 	
 	    // 지도 생성 함수 호출
 	    geo_map(lat, lng);
-	</script>
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=590d5be37368c91772ba5516b2944ed1"></script>
-	<script>
+
         function geo_map(lat, lng) {
             var mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
@@ -291,41 +302,45 @@
             // 마커에 인포윈도우를 표시합니다
             infowindow.open(map, marker);
         }
-    </script>
+        </script>
+        
 	<script type="text/javascript">
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            const offset = document.querySelector('.fixed-header').offsetHeight;
-            const sectionPosition = section.getBoundingClientRect().top + window.scrollY - offset;
-            window.scrollTo({ top: sectionPosition, behavior: 'smooth' });
-        }
+		// 섹션으로 부드럽게 스크롤하는 함수
+		function scrollToSection(sectionId) {
+			// 섹션 ID에 해당하는 요소를 찾음
+			const section = document.getElementById(sectionId);
+			// 해당 섹션의 화면 위치를 계산
+			// 고정된 메뉴의 높이를 계산
+	        const menuHeight = document.querySelector('.menu_container').offsetHeight;
 
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+	        // 추가로 100px 오프셋 설정
+	        const additionalOffset = 160;
 
-        window.addEventListener('scroll', function () {
-            const scrollTopBtn = document.getElementById('scrollTopBtn');
-            if (window.scrollY > 300) {
-                scrollTopBtn.style.display = 'block';
-            } else {
-                scrollTopBtn.style.display = 'none';
-            }
-        });
+	        // 스크롤 위치 조정 (고정 메뉴 높이 + 추가 오프셋)
+	        const sectionPosition = section.getBoundingClientRect().top + window.scrollY - menuHeight - additionalOffset;
 
-        function displaySrc() {
-            let big = document.querySelector(".photo_big");
-        }
+	        window.scrollTo({ top: sectionPosition, behavior: 'smooth' });
+	    }
 
-        let smallpics = document.querySelectorAll(".small");
-        for (let k of smallpics) {
-            k.addEventListener("click", changePic);
-        }
+		// 사진보기 버튼 클릭 시 photo_gallery 섹션으로 이동
+		function goToPhotoGallery() {
+			scrollToSection('#photo_gallery');
+		}
 
-        function changePic() {
-            let newPic = this.src;
-            document.querySelector(".photo_big").setAttribute("src", newPic);
-        }
-    </script>
+		// 상세보기 버튼 클릭 시 details_box 섹션으로 이동
+		function goToDetailsBox() {
+			scrollToSection('#details');
+		}
+
+		// 지도보기 버튼 클릭 시 kakaoMap 섹션으로 이동
+		function goToKakaoMap() {
+			scrollToSection('#kakaoMap');
+		}
+
+		// 여행톡 버튼 클릭 시 tourTalk 섹션으로 이동
+		function goToTourTalk() {
+			scrollToSection('#tourTalk');
+		}
+	</script>
 </body>
 </html>

@@ -33,6 +33,7 @@
 		<mapper resource="mappers/weather_mapper.xml" />
 		<mapper resource="mappers/add_mapper.xml" />
 		<mapper resource="mappers/main_mapper.xml" />
+		<mapper resource="mappers/tourTalk_mapper.xml" />
 		
 	</mappers>
 </configuration>

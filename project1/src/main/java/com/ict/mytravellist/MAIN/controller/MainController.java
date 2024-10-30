@@ -93,7 +93,7 @@ public ModelAndView regionSearch(
 
         if (!list.isEmpty()) {
             mv.addObject("list", list.get(0));
-            //System.out.println("detail_go Controller 통과: " + trrsrtNm);
+            System.out.println("detail_go Controller 통과: " + list);
         } else {
             System.out.println("해당 관광지 정보를 찾을 수 없습니다: " + trrsrtNm);
         }
@@ -101,12 +101,13 @@ public ModelAndView regionSearch(
         return mv;
     }
     
-    // 카카오맵 연동
-    @GetMapping("/kakaoMap")
-	public ModelAndView kakaoMap() {
-    	
-		return new ModelAndView("MAIN/travlDetail");
-	}	
+	/*
+	 * // 카카오맵 연동
+	 * 
+	 * @GetMapping("/kakaoMap") public ModelAndView kakaoMap() {
+	 * 
+	 * return new ModelAndView("MAIN/travlDetail"); }
+	 */
 	
 	
 	
