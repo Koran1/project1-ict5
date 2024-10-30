@@ -25,11 +25,8 @@ public class MainController {
 	// HOME
 	@GetMapping("/main_go")
 	public ModelAndView maiPage(Model model) {
-<<<<<<< HEAD
 		System.out.println("main_go controller 통과");
-=======
 		// System.out.println("main_go controller 통과");
->>>>>>> 346571ba875695c0df804bcb4134dd75ed7ab24b
 		return new ModelAndView("MAIN/main");
 	}
 	
@@ -84,11 +81,7 @@ public ModelAndView regionSearch(
     // 특정 관광지의 상세 정보 조회
     @GetMapping("/travelDetail_go")
     public ModelAndView detail(@ModelAttribute("travelIdx") String trrsrtNm) {
-<<<<<<< HEAD
-        ModelAndView mv = new ModelAndView("MAIN/travlDetail");
-=======
         ModelAndView mv = new ModelAndView("MAIN/travelDetail");
->>>>>>> 346571ba875695c0df804bcb4134dd75ed7ab24b
         List<TravelDBVO> list = mainService.getDetailList(trrsrtNm);
 
         if (!list.isEmpty()) {
