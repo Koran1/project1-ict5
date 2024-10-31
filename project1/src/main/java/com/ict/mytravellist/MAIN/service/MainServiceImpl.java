@@ -48,9 +48,8 @@ public class MainServiceImpl implements MainService {
     }
 
 	@Override
-	public List<WeatherVO> getWeatherList(String travelIdx, String region) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<WeatherVO> getWeatherList() {
+		return mainDAO.getWeatherList();
 	}
 
 	@Override

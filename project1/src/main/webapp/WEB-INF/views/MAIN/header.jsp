@@ -39,7 +39,7 @@
 	          <li><a href="/notice_go" class="nav-link px-2 link-body-emphasis"><b>Notice</b></a></li>
 				<c:choose>
 				 <c:when test="${empty userId}">
-	          		<li><a href="/login_go" class="nav-link px-2 link-body-emphasis"><b>Travel Plan</b></a></li>
+	          		<li><a href="/mem_login" class="nav-link px-2 link-body-emphasis"><b>Travel Plan</b></a></li>
 				 </c:when>
 				 <c:otherwise>
 				   	<li><a href="/trvlPlan_go" class="nav-link px-2 link-body-emphasis"><b>Travel Plan</b></a></li>
@@ -56,7 +56,7 @@
 	            <li><hr class="dropdown-divider"></li>
 	            <c:choose>
 				 <c:when test="${empty userId}">
-	            	<li><a class="dropdown-item" href="/login_go">Sign in</a></li>
+	            	<li><a class="dropdown-item" href="/mem_login">Sign in</a></li>
 	             </c:when>
 				 <c:otherwise>
 				 	<li><a class="dropdown-item" href="/logout">Sign out</a></li>

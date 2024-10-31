@@ -249,7 +249,7 @@
 			</div>
 
 			<!-- 여행톡 섹션 -->
-			<jsp:include page="tourTalk.jsp" />
+			<%-- <jsp:include page="tourTalk.jsp" /> --%>
 		</div>
 
 		</div>

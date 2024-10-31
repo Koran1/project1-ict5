@@ -46,4 +46,8 @@
             SELECT * FROM travellistdb WHERE travelIdx = #{travelIdx}
 
     </select>
+    
+    <select id="getWeatherList" resultType="wthrvo">
+    	SELECT * FROM pjweather
+    </select>
 </mapper>

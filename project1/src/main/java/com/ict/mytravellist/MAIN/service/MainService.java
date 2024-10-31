@@ -11,7 +11,7 @@ public interface MainService {
 	public List<TravelDBVO> getSearchList(String keyword) ;
 	public List<TravelDBVO> searchKeywordAndRegion(String keyword, String region);
 	public List<TravelDBVO> getTralDetail(String travelIdx);
-	public List<WeatherVO> getWeatherList(String travelIdx, String region);
+	public List<WeatherVO> getWeatherList();
     public List<TravelDBVO> getDetailList(String trrsrtNm);
 	
 }
