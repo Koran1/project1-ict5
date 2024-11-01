@@ -5,7 +5,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,19 +22,29 @@ import com.ict.mytravellist.PLAN.vo.RouteInfoVO;
 public class PlanAjaxController {
 	
 	@RequestMapping(value = "/kakaoRoadLine", produces = "application/json; charset=utf-8")
-	public List<RouteInfoVO> kakaoRoad(@RequestParam("positions[]") double[] positions, HttpServletRequest request) {
+	public List<RouteInfoVO> kakaoRoad(
+			@RequestParam("positions[]") double[] positions,
+			@RequestParam("idx_container[]") String[] idx_container,
+			HttpServletRequest request) {
 		try {
 			List<String> coordinates_string = new ArrayList<>();
-
+			
 			for (int i = 0; i < positions.length; i += 2) {
 				String coord = String.valueOf(positions[i]) + "," + String.valueOf(positions[i + 1]);
 				coordinates_string.add(coord);
 			}
-
+			
+			Map<String, String> map = new HashMap<String, String>();
+			for (int i = 0; i < idx_container.length; i++) {
+				map.put(coordinates_string.get(i), idx_container[i]);
+			}
+			
+			// Origin 설정
 			String origin = coordinates_string.get(0);
+			
 			List<String> coordinates_string_final = new ArrayList<>();
 			coordinates_string_final.add(origin);
-
+			
 			while (coordinates_string.size() > 2) {
 				int distance = 1500000;
 				int idx = 0;
@@ -47,15 +59,35 @@ public class PlanAjaxController {
 				coordinates_string_final.add(coordinates_string.get(idx));
 				coordinates_string.remove(idx);
 			}
+			
 			if (coordinates_string.size() == 2) {
 				coordinates_string_final.add(coordinates_string.get(1));
 			}
-
+			
+			String[] orders = new String[idx_container.length];
+			
+			for (int i = 0; i < coordinates_string_final.size(); i++) {
+				orders[i] = map.get(coordinates_string_final.get(i));
+				
+			}
+			
+			for (String s : orders) {
+				System.out.println(s);
+			}
+			
+			boolean isOrigin = false;
 			List<RouteInfoVO> list = new ArrayList<RouteInfoVO>();
 			for (int i = 0; i < coordinates_string_final.size() - 1; i++) {
 				String origin2 = coordinates_string_final.get(i);
 				String destination = coordinates_string_final.get(i + 1);
-				list.add(getRouteInfo(origin2, destination));
+				RouteInfoVO rvo = getRouteInfo(origin2, destination);
+				
+				if(!isOrigin) {
+					rvo.getRoutes().get(0).getSummary().getOrigin().setName(orders[0]);
+					isOrigin = true;
+				}
+				rvo.getRoutes().get(0).getSummary().getDestination().setName(orders[i+1]);
+				list.add(rvo);
 			}
 			return list;
 

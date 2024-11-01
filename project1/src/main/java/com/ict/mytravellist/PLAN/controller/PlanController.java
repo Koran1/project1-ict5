@@ -31,7 +31,8 @@ public class PlanController {
 		ModelAndView mv = new ModelAndView("PLAN/mytrvlplan");
 		
 		// 유저 최애 travelIdx
-		String travelIdx = "1,2,3,4,5,6,7,8,9,10";
+		String travelIdx = "1,2,3,4,5,6,7,8,9,10,"
+				+ "11,12,13,14,15,16,17,18,19,20";
 		String[] travelIdxes = travelIdx.split(",");
 		
 		List<TravelDBVO> list = new ArrayList<TravelDBVO>();
