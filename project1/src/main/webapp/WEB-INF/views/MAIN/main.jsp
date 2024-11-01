@@ -243,7 +243,7 @@
 		function load(region){
 			let result_data;
 			$.ajax({
-				url : "/test01",
+				url : "/getwthrinfo",
 				method : "post",
 				data : "region="+region,
 				dataType : "json",
