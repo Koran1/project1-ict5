@@ -14,6 +14,6 @@ public interface MainDAO {
 	public List<TravelDBVO> getSearchList(@Param("keyword") String keyword);
 	public List<TravelDBVO> searchKeywordAndRegion(@Param("keyword") String keyword, @Param("region") String region);
 	public List<TravelDBVO> getDetailList(@Param("trrsrtNm") String trrsrtNm);
-	public List<WeatherVO> getWeatherList(String travelIdx, String region);
+	public List<WeatherVO> getWeatherList();
 	public List<TravelDBVO> getTralDetail(String travelIdx);
 }

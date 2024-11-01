@@ -8,7 +8,7 @@ import com.ict.mytravellist.vo.WeatherVO;
 public interface MainService {
 
 	public List<TravelDBVO> getRandomList();
-	public List<WeatherVO> getWeatherList(String travelIdx, String region);
+	public List<WeatherVO> getWeatherList();
 	public List<TravelDBVO> getTralDetail(String travelIdx);
 	public List<TravelDBVO> getSearchList(String keyword) ;
     public List<TravelDBVO> searchKeywordAndRegion(String keyword, String region);
