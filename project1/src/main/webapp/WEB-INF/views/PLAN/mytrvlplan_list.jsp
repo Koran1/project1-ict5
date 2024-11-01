@@ -51,9 +51,29 @@
         </div>
 
         <div id="main_container">
-			
-			
-		    
+        	<table>
+        		<thead>
+        			<tr> <th>등록번호</th> <th>제목</th> <th>대표여행지</th> <th>여행날짜</th> </tr>
+        		</thead>
+        		<tbody>
+					<c:choose>
+						<c:when test="${empty list}">
+							<tr><td colspan="4">여행 계획이 없습니다</td></tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="k" items="${list}" varStatus="c">
+								<tr>
+									<td>paging 사용한 c</td>
+									<td><a href="/mytrvlplan_list_detail?trvlPlanIdx=${trvlPlanIdx}">${k.trvlPlanSubject}</a></td>
+									<td>${k.trvlPlantrrsrtNm1 } </td>
+									<td>${k.trvlPlanDate } </td>
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+        		</tbody>
+        	
+        	</table>
 			
 		    <br><br>
 		    <button id="unlike-item">관심해제</button>
