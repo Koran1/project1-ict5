@@ -229,6 +229,38 @@
 		    	            table += "</a>";
 		    	            table += "</div>";
 		                
+		    	            table += "<div class='travel_weather_detail' style='display:none;'>";
+		                	table += "<table>";
+		                	table += "<tr><th>날짜</th><th>최저</th><th>최고</th><th>날씨 (강수확률)</th>";
+		                	table += "<tr><td>"+k[1].wthrDate+"</td><td>"+k[1].wthrTMin
+		                	+"</td><td>"+k[1].wthrTMax+"</td><td>"+k[1].wthrSKY_PTY+"("+k[1].wthrPOP+")</td><td>"
+		    	            
+		                	table += "<tr><td>"+k[2].wthrDate+"</td><td>"+k[2].wthrTMin
+		                	+"</td><td>"+k[2].wthrTMax+"</td><td>"+k[2].wthrSKY_PTY+"("+k[2].wthrPOP+")</td><td>"
+		    	            
+		                	table += "<tr><td>"+k[3].wthrDate+"</td><td>"+k[3].wthrTMin
+		                	+"</td><td>"+k[3].wthrTMax+"</td><td>"+k[3].wthrSKY_PTY+"("+k[3].wthrPOP+")</td><td>"
+		    	            
+		                	table += "<tr><td>"+k[4].wthrDate+"</td><td>"+k[4].wthrTMin
+		                	+"</td><td>"+k[4].wthrTMax+"</td><td>"+k[4].wthrSKY_PTY+"("+k[4].wthrPOP+")</td><td>"
+		    	            
+		                	table += "<tr><td>"+k[5].wthrDate+"</td><td>"+k[5].wthrTMin
+		                	+"</td><td>"+k[5].wthrTMax+"</td><td>"+k[5].wthrSKY_PTY+"("+k[5].wthrPOP+")</td><td>"
+		    	            
+		                	table += "<tr><td>"+k[6].wthrDate+"</td><td>"+k[6].wthrTMin
+		                	+"</td><td>"+k[6].wthrTMax+"</td><td>"+k[6].wthrSKY_PTY+"("+k[6].wthrPOP+")</td><td>"
+		    	            
+		                	table += "<tr><td>"+k[7].wthrDate+"</td><td>"+k[7].wthrTMin
+		                	+"</td><td>"+k[7].wthrTMax+"</td><td>"+k[7].wthrSKY_PTY+"("+k[7].wthrPOP+")</td><td>"
+		    	            
+		                	table += "<tr><td>"+k[8].wthrDate+"</td><td>"+k[8].wthrTMin
+		                	+"</td><td>"+k[8].wthrTMax+"</td><td>"+k[8].wthrSKY_PTY+"("+k[8].wthrPOP+")</td><td>"
+		    	            
+		                	table += "<tr><td>"+k[9].wthrDate+"</td><td>"+k[9].wthrTMin
+		                	+"</td><td>"+k[9].wthrTMax+"</td><td>"+k[9].wthrSKY_PTY+"("+k[9].wthrPOP+")</td><td>"
+		                	table += "</table>";
+		    	            table += "</div>";
+		    	            table += "</div>";
 		    	        });
 
 		    	        $("#travel-list").html(table); // HTML 주입
