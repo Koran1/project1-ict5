@@ -34,6 +34,8 @@
 		<mapper resource="mappers/add_mapper.xml" />
 		<mapper resource="mappers/main_mapper.xml" />
 		<mapper resource="mappers/tourTalk_mapper.xml" />
+		<mapper resource="mappers/mypage_mapper.xml" />
+
 		
 	</mappers>
 </configuration>

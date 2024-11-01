@@ -24,7 +24,6 @@ public class MainDAOImpl implements MainDAO{
 	// 랜덤 지역 이미지 불러오기
 	@Override
 	public List<TravelDBVO> getRandomList() {
-	    // System.out.println("getRandomList MainDAO 통과");
 	    return sqlSessionTemplate.selectList("main.randomList");  // 랜덤한 여행지 반환
 	}
 	

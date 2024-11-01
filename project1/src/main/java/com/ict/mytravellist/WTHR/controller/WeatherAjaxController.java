@@ -18,12 +18,10 @@ public class WeatherAjaxController {
 	@Autowired
 	private WeatherService weatherService;
 	
-	@RequestMapping(value="/test01", produces = "application/json; charset=utf-8")
+	@RequestMapping(value="/getwthrinfo", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String getAjaxList2(String region) {
 		List<WeatherVO> list = weatherService.getWthrInfo(region);
-		// List<ResultMapVO> list = weatherService.getWthrInfo2(region);
-		// List<ResultMapVO> list = weatherService.getWthrInfo3(region);
 		if(list != null) {
 			Gson gson = new Gson();
 			String jsonString = gson.toJson(list);

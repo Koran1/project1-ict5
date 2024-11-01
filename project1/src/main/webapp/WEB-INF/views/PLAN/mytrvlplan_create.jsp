@@ -482,6 +482,12 @@
 			        const region = document.getElementById('region-filter').selectedOptions[0].text;
 	                const name = data_container[0].getAttribute('data-name');
 	                const imgSrc = data_container[0].getAttribute('data-img');
+	                
+	                const createBtn = document.createElement('button');
+		            createBtn.textContent = '+';
+		            createBtn.onclick = openModal; // Set the onclick function
+		            createBtn.id = 'create-plan'; // Set the ID
+		            container.appendChild(createBtn);
 			        
 			        // First is fixed
 			        const travelPlan = document.createElement('div');
@@ -490,16 +496,14 @@
 		            travelPlan.setAttribute('data-name', name);
 		            travelPlan.setAttribute('data-index', data[0].routes[0].summary.origin.name);
 		            travelPlan.setAttribute('data-img', imgSrc);
-		            travelPlan.setAttribute('data-lat', data[0].routes[0].summary.origin.y) ;
-		            travelPlan.setAttribute('data-lng', data[0].routes[0].summary.origin.x) ;
-		            travelPlan.innerHTML = '<p>'+region+'</p><p>'+name+'</p><img src="'+imgSrc+'" alt="img"><p> - km</p><p> - 분</p><button class="delete-btn" onclick="deleteTravelplan(this)">-</button>';
+		            travelPlan.setAttribute('data-lat', data_container[0].getAttribute('data-lat')) ;
+		            travelPlan.setAttribute('data-lng', data_container[0].getAttribute('data-lng')) ;
+		            travelPlan.innerHTML = '<p>'+region+'</p><p>'+name+'</p><img src="'+imgSrc+'" alt="img"><p>시작지점</p><button class="delete-btn" onclick="deleteTravelplan(this)">-</button>';
 		            container.appendChild(travelPlan);
 			        
 					data.forEach(plan => {
 						for (let i = 0; i < data_container.length; i++) {
 							if(plan.routes[0].summary.destination.name === data_container[i].getAttribute('data-index')){
-								let lat = plan.routes[0].summary.destination.y ;
-					        	let lng = plan.routes[0].summary.destination.x ;
 					        	let name = data_container[i].getAttribute('data-name');
 					        	let imgSrc = data_container[i].getAttribute('data-img');
 					        	
@@ -509,8 +513,8 @@
 					            travelPlan.setAttribute('data-name', name);
 					            travelPlan.setAttribute('data-index', plan.routes[0].summary.destination.name);
 					            travelPlan.setAttribute('data-img', imgSrc);
-					            travelPlan.setAttribute('data-lat', lat);
-					            travelPlan.setAttribute('data-lng', lng);
+					            travelPlan.setAttribute('data-lat', data_container[i].getAttribute('data-lat')) ;
+					            travelPlan.setAttribute('data-lng', data_container[i].getAttribute('data-lng')) ;
 					            travelPlan.innerHTML = '<p>'+region+'</p><p>'+name
 								+'</p><img src="'+imgSrc+'"alt="img"><p>'
 								+Math.ceil(plan.routes[0].sections[0].distance/10)/100+'km</p><p>'

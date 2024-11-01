@@ -125,15 +125,34 @@
 </style>
 </head>
 <body>
-	<jsp:include page="header.jsp"/>
+	<jsp:include page="header.jsp" />
 
 	<!-- 메인 컨텐츠 -->
 	<!-- main -->
 	<div class="main_container">
 		<div class="main_left">
 			<div class="travel_result">
-				<p>검색결과</p>
-				<p>: ${keyword} ${list.size()}건</p>
+				<p>검색결과 : ${keyword}</p>
+				<p>총 ${list.size()}건</p>
+				<select id="region-filter">
+					<option value="0">선택</option>
+					<option value="1">서울</option>
+					<option value="2">부산</option>
+					<option value="3">대구</option>
+					<option value="4">인천</option>
+					<option value="5">광주</option>
+					<option value="6">대전</option>
+					<option value="7">울산</option>
+					<option value="8">경기</option>
+					<option value="9">강원</option>
+					<option value="10">충북</option>
+					<option value="11">충남</option>
+					<option value="12">전북</option>
+					<option value="13">전남</option>
+					<option value="14">경북</option>
+					<option value="15">경남</option>
+					<option value="16">제주</option>
+				</select>
 			</div>
 		</div>
 
@@ -144,40 +163,9 @@
 				</c:when>
 				<c:otherwise>
 					<section class="searchs">
-						<form id="regionForm" action="/region_search" method="get">
-							<input type="hidden" name="keyword" value="${keyword}" /> <select
-								class="region_menu" name="region"
-								onchange="document.getElementById('regionForm').submit();">
-								<option value="">:: 지역 선택 ::</option>
-								<c:forEach var="k" begin="1" end="16">
-									<option value="${k}">
-										<c:if test="${region == k}">selected</c:if>
-										<c:choose>
-											<c:when test="${k == 1}">서울</c:when>
-											<c:when test="${k == 2}">부산</c:when>
-											<c:when test="${k == 3}">대구</c:when>
-											<c:when test="${k == 4}">인천</c:when>
-											<c:when test="${k == 5}">광주</c:when>
-											<c:when test="${k == 6}">대전</c:when>
-											<c:when test="${k == 7}">울산</c:when>
-											<c:when test="${k == 8}">경기</c:when>
-											<c:when test="${k == 9}">강원</c:when>
-											<c:when test="${k == 10}">충북</c:when>
-											<c:when test="${k == 11}">충남</c:when>
-											<c:when test="${k == 12}">전북</c:when>
-											<c:when test="${k == 13}">전남</c:when>
-											<c:when test="${k == 14}">경북</c:when>
-											<c:when test="${k == 15}">경남</c:when>
-											<c:otherwise>제주</c:otherwise>
-										</c:choose>
-									</option>
-								</c:forEach>
-							</select>
-						</form>
-
 						<div class="main_wrapper">
 							<c:forEach var="k" items="${list}">
-								<div class="travel_box">
+								<div class="travel_box" data-category="${k.region}">
 									<div class="travel_image">
 										<a href="/detail_go?trrsrtNm=${k.trrsrtNm}"> <img
 											alt="관광지 이미지" src="${k.placeImg01}">
@@ -206,12 +194,26 @@
 		</div>
 
 		<div class="main_right">
-			<jsp:include page="scroll.jsp"/>
+			<jsp:include page="scroll.jsp" />
 		</div>
 	</div>
 
-	<jsp:include page="footer.jsp"/>
-
+	<jsp:include page="footer.jsp" />
+	<script type="text/javascript">
+		document.getElementById('region-filter').addEventListener('change', function () {
+	        const selectedCategory = this.value;
+	        const travelBoxes = document.querySelectorAll('.travel_box');
+	        
+	        travelBoxes.forEach(item => {
+	            item.style.display = (item.getAttribute('data-category') === selectedCategory) ? 'block' : 'none';
+	        });
+	        if(selectedCategory === "0"){
+	        	travelBoxes.forEach(item => {
+		            item.style.display = 'block';
+	        	});
+	        }
+	    });
+	</script>
 </body>
 
 </html>

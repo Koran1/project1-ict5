@@ -11,6 +11,10 @@ import com.ict.mytravellist.vo.WeatherVO;
 @Mapper
 public interface MainDAO {
 	public List<TravelDBVO> getRandomList();
+	public List<TravelDBVO> getSearchList(@Param("keyword") String keyword);
+	public List<TravelDBVO> searchKeywordAndRegion(@Param("keyword") String keyword, @Param("region") String region);
+	public List<TravelDBVO> getDetailList(@Param("trrsrtNm") String trrsrtNm);
+	public List<WeatherVO> getWeatherList();
 	public List<TravelDBVO> getSearchList(String keyword) ;
 	public List<TravelDBVO> searchKeywordAndRegion(String keyword, String region);
 	public List<TravelDBVO> getTralDetail(String travelIdx);

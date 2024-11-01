@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mypage">
+	<update id="getUserUpdate" parameterType="uservo">
+		update pjcustomer set userMail = #{userMail}, userAddr = #{userAddr}, 
+		userFavor01 = #{userFavor01}, userFavor02 = #{userFavor02}, userFavor03 = #{userFavor03} where userId = #{userId}
+	</update>	
+	<select id="getTTList" resultType="tourtvo" parameterType="Map">
+		select * from pjtourtalk where userId = #{userId} order by tourTalkReg desc limit #{limit} offset #{offset}
+	</select>
+	<delete id="delTTOne" parameterType="String">
+		delete from pjtourtalk where tourTalkIdx = #{tourTalkIdx}
+	</delete>
+	<delete id="delTTChked">
+		delete from pjtourtalk where tourTalkIdx in
+		<foreach collection="array" item="chkedIdx" open="(" close=")" separator=",">
+			#{chkedIdx}
+		</foreach>
+	</delete>
+	<select id="getUserDetail" parameterType="String" resultType="uservo">
+		select * from pjcustomer where userId = #{userId}
+	</select>
+	<select id="countData" parameterType="String" resultType="int">
+		select count(*) from pjtourtalk where userId = #{userId}
+	</select>
+	<update id="getChangePw" parameterType="uservo">
+		update pjcustomer set userPw = #{userPw} where userId = #{userId}
+	</update>
+	<update id="getUserOut" parameterType="uservo">
+		update pjcustomer set userLevel = 2 where userId = #{userId}
+	</update>
+	
+	
+</mapper>

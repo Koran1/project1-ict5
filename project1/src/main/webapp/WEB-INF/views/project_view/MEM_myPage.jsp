@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MyPage - index</title>
 <style type="text/css">
 	#container{margin: 0px auto;}
 	#logo{width: 200px; height: 70px; margin-bottom: 0px; display: block}
@@ -28,12 +28,12 @@
 </c:if>
 </script>
 <div id="container">
-	<a href="/go_main"><img id="logo" alt="" src="resources/project_images/logo.png"></a>
+	<a href="/go_main"><img id="logo" alt="" src="resources/images/logo.png"></a>
 	<br>
 	<p id="title">마이페이지</p>
 	
 	<div id="profile_container">
-		<img id="profile" alt="" src="resources/project_images/profile.png">
+		<img id="profile" alt="" src="resources/images/profile.png">
 		<span>홍길동님</span>
 	</div>
 	<hr>
@@ -41,22 +41,22 @@
 		
 	
 		<section class="flexbox" id="flex1"><a href="/go_identify?cmd=go_my_comment">
-		<img alt="" src="resources/project_images/my_comment.png" style="float: left;">
+		<img alt="" src="resources/images/my_comment.png" style="float: left;">
 			<p> 내 댓글 관리</p>
 			<p>내 댓글을 확인하고, 삭제할 수 있습니다.</p>
 		</a></section> 
 		<section class="flexbox" id="flex2"><a href="/go_identify?cmd=go_update">
-		<img alt="" src="resources/project_images/update.png" style="float: left;">
+		<img alt="" src="resources/images/update.png" style="float: left;">
 			<p>	회원정보 수정</p>
 			<p>아이디, 관심지역 등 내 정보를 수정하세요.</p>
 		</a></section>
 		<section class="flexbox" id="flex3"><a href="/go_identify?cmd=go_pw_change">
-		<img alt="" src="resources/project_images/change_pw.png" style="float: left;">
+		<img alt="" src="resources/images/change_pw.png" style="float: left;">
 			<p>비밀번호 변경</p> 
 			<p>주기적인 변경으로 내 정보를 보호하세요.</p>
 		</a></section>
 		<section class="flexbox" id="flex4"><a href="/go_identify?cmd=go_user_out">
-		<img alt="" src="resources/project_images/member_out.png" style="float: left;">
+		<img alt="" src="resources/images/member_out.png" style="float: left;">
 			<p>회원탈퇴</p>
 		</a></section>
 	</div>

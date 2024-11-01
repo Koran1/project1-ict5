@@ -131,6 +131,13 @@
 	transition: opacity 0.8s ease-in-out; /* 페이드 효과 */
 	gap: 30px; /* 각 박스 사이에 20px 간격 추가 */
 }
+
+/* 추가 CSS */
+.travel_box_detail{
+	width: 100%;
+	height: 100%;
+}
+
 </style>
 </head>
 <body>
@@ -157,7 +164,7 @@
 	document.addEventListener("DOMContentLoaded", function () {
 		    // 페이지 로드 시 리스트 초기 렌더링
 		    loadTravelList();
-
+		    enableDetail();
 		    // 5초마다 리스트 갱신
  		   /* setInterval(() => {
 		        loadTravelList();
@@ -223,6 +230,8 @@
 
 		    	        $("#travel-list").html(table); // HTML 주입
 		                $("#travel-list").fadeIn(800); // 새 리스트 페이드 인
+		                
+		                
 		    	    },
 		    	    error: function (xhr, status, error) {
 		    	        console.error("데이터를 가져오는 데 실패했습니다:", error);

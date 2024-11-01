@@ -1,7 +1,15 @@
 package com.ict.mytravellist.vo;
 
 public class TourTalkVO {
-	private String tourTalkIdx, trrsrtNm, tourTalkContent, tourTalkReg, tourTalkEtc01, tourTalkEtc02, tourTalkIcon;
+	private String tourTalkIdx, trrsrtNm, tourTalkContent, tourTalkReg, tourTalkEtc01, tourTalkEtc02, tourTalkIcon, userId;
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	public String getTourTalkIdx() {
 		return tourTalkIdx;
