@@ -18,7 +18,7 @@
 /* 메뉴 컨테이너 스타일 */
 .menu_container {
 	width: 100%;
-	margin: 120px 10px 0 0;
+	margin: 68px 10px 0 0;
 	display: flex;
 	justify-content: center;
 	background-color: white;
@@ -63,7 +63,7 @@
 /* 전체 컨테이너 */
 .main_wrapper {
 	width: 100%;
-	padding-top: 200px;
+	padding-top: 130px;
 }
 
 .main_left {
@@ -272,29 +272,29 @@
 	    geo_map(lat, lng);
 
         function geo_map(lat, lng) {
-            var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+            let mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
                 center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표
                 level: 2 // 지도의 확대 레벨 (1~14)
             };
 
             // 지도를 생성합니다
-            var map = new kakao.maps.Map(mapContainer, mapOption);
+            let map = new kakao.maps.Map(mapContainer, mapOption);
 
             // 마커 위치 설정
-            var markerPosition = new kakao.maps.LatLng(lat, lng);
+            let markerPosition = new kakao.maps.LatLng(lat, lng);
 
             // 마커를 생성하고 지도에 표시합니다
-            var marker = new kakao.maps.Marker({
+            let marker = new kakao.maps.Marker({
                 position: markerPosition
             });
             marker.setMap(map);
 
             // 인포윈도우 설정
-            var iwContent = '<div style="padding:5px;">${list.trrsrtNm}</div>',
+            let iwContent = '<div style="padding:10px;">${list.trrsrtNm}</div>',
                 iwPosition = new kakao.maps.LatLng(lat, lng);
 
-            var infowindow = new kakao.maps.InfoWindow({
+            let infowindow = new kakao.maps.InfoWindow({
                 position: iwPosition,
                 content: iwContent
             });
@@ -337,10 +337,10 @@
 			scrollToSection('#kakaoMap');
 		}
 
-		// 여행톡 버튼 클릭 시 tourTalk 섹션으로 이동
+/* 		// 여행톡 버튼 클릭 시 tourTalk 섹션으로 이동
 		function goToTourTalk() {
 			scrollToSection('#tourTalk');
-		}
+		} */
 	</script>
 </body>
 </html>

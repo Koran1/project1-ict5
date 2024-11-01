@@ -8,7 +8,7 @@
         SELECT * FROM travellistdb ORDER BY RAND() LIMIT 3
     </select>
 
-    <!-- 키워드 기반 검색 -->
+    <!-- 키워드 기반 검색 
     <select id="getSearchList" parameterType="String" resultType="tdvo">
         SELECT * 
         FROM ictedu_db.travellistdb 
@@ -23,6 +23,7 @@
         OR sportFclty LIKE CONCAT('%', #{keyword}, '%' )
         OR trrsrtIntrcn LIKE CONCAT('%', #{keyword}, '%')    
     </select>
+-->
 
     <!-- 키워드 및 지역 기반 검색 -->
     <select id="getSearchKeyRegion" parameterType="map" resultType="tdvo">
@@ -44,10 +45,41 @@
     <!-- 상세 정보 가져오기 -->
     <select id="getDetailList" parameterType="String" resultType="tdvo">
             SELECT * FROM travellistdb WHERE travelIdx = #{travelIdx}
-
     </select>
     
     <select id="getWeatherList" resultType="wthrvo">
     	SELECT * FROM pjweather
     </select>
+    
+    <select id="count" parameterType="String" resultType="int">
+  		select count(*) from travellistdb
+  		WHERE 
+		    trrsrtNm LIKE CONCAT('%', #{keyword}, '%') 
+		    OR rdnmadr LIKE CONCAT('%', #{keyword}, '%') 
+		    OR lnmadr LIKE CONCAT('%', #{keyword}, '%') 
+		    OR cnvnncFclty LIKE CONCAT('%', #{keyword}, '%') 
+		    OR recrtClturFclty LIKE CONCAT('%', #{keyword}, '%') 
+		    OR mvmAmsmtFclty LIKE CONCAT('%', #{keyword}, '%') 
+		    OR hospitalityFclty LIKE CONCAT('%', #{keyword}, '%') 
+		    OR stayngInfo LIKE CONCAT('%', #{keyword}, '%') 
+		    OR sportFclty LIKE CONCAT('%', #{keyword}, '%') 
+		    OR trrsrtIntrcn LIKE CONCAT('%', #{keyword}, '%') 
+  	</select>
+  	
+  	 <select id="page_list" parameterType="Map" resultType="tdvo">
+		SELECT * FROM travellistdb 
+		WHERE 
+		    trrsrtNm LIKE CONCAT('%', #{keyword}, '%') 
+		    OR rdnmadr LIKE CONCAT('%', #{keyword}, '%') 
+		    OR lnmadr LIKE CONCAT('%', #{keyword}, '%') 
+		    OR cnvnncFclty LIKE CONCAT('%', #{keyword}, '%') 
+		    OR recrtClturFclty LIKE CONCAT('%', #{keyword}, '%') 
+		    OR mvmAmsmtFclty LIKE CONCAT('%', #{keyword}, '%') 
+		    OR hospitalityFclty LIKE CONCAT('%', #{keyword}, '%') 
+		    OR stayngInfo LIKE CONCAT('%', #{keyword}, '%') 
+		    OR sportFclty LIKE CONCAT('%', #{keyword}, '%') 
+		    OR trrsrtIntrcn LIKE CONCAT('%', #{keyword}, '%') 
+		ORDER BY travelidx DESC 
+		LIMIT #{limit}, #{offset}
+	</select>
 </mapper>

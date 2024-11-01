@@ -68,14 +68,23 @@
 .travel_image img {
 	justify-content: center; /* 가로 가운데 정렬 */
 	width: 100%; /* 이미지의 너비 */
-	height: 300px; /* 이미지의 높이 */
+	height: 270px; /* 이미지의 높이 */
 	object-fit: cover; /* 이미지 비율을 유지하며 박스에 맞춤 */
 	border-radius: 12px 12px 0 0; /* 상단 모서리 둥글게 */
+}
+.travel_name{
+	text-align: left;
+	padding-left: 35px;
+	align-items: center;
+	font-size: 27px;
+	font-weight: bold;
+	margin-bottom: 15px;
+	color: rgb(100, 50, 15, 10);
 }
 
 /* 날씨 정보 스타일: 여행지 정보 하단 날씨 박스 */
 .travel_weather {
-	height: 120px; /* 날씨 정보의 높이 */
+	max-height: 150px; /* 날씨 정보의 높이 */
 	margin-top: 7px; /* 상단 여백 */
 	padding: 15px; /* 내부 여백 */
 	background-color: #ddf7d8; /* 연한 초록색 배경 */
@@ -107,7 +116,7 @@
 
 /* 지역명 스타일: 여행지의 한글 이름 */
 .travel_location_region {
-	font-size: 40px; /* 텍스트 크기 */
+	font-size: 27px; /* 텍스트 크기 */
 	font-family: "Noto Sans KR", sans-serif; /* 폰트 설정 */
 	font-optical-sizing: auto; /* 텍스트 크기에 따른 최적화 */
 	font-weight: 550; /* 폰트 두께 설정 */
@@ -154,15 +163,14 @@
 
 	<script type="text/javascript">
     let travelIdx, placeImg01, trrsrtNm, region, touritEtc01, wthrDate, wthrTMin, wthrTMax, wthrSKY;
+    
 	document.addEventListener("DOMContentLoaded", function () {
 		    // 페이지 로드 시 리스트 초기 렌더링
 		    loadTravelList();
 
-		    // 5초마다 리스트 갱신
- 		   /* setInterval(() => {
+ 		    setInterval(() => {
 		        loadTravelList();
-		    }, 20000); 
-		    }, 20000);  */
+		    }, 200000); 
 		    
 		    function loadTravelList() {
 		    	$("#travel-list").empty();
@@ -182,6 +190,7 @@
 
 		    	        data.forEach(function(list, i) {
 		    	        	travelIdx = list.travelIdx;
+		    	        	trrsrtNm = list.trrsrtNm;
 		    	            placeImg01 = list.placeImg01;
 		    	            trrsrtNm = list.trrsrtNm;
 		    	            region = list.region;
@@ -197,7 +206,8 @@
 		    	            
 		    	            table += "<div class='travel_box'>";
 		    	            table += "<a href='/travelDetail_go?travelIdx=" + travelIdx + "' class='travel_image'><img src='" + placeImg01 + "' alt='" + trrsrtNm + "'></a>";
-		    	            table += "<div class='travel_weather'>";
+		                    table += "<a href='#' class='travel_weather' onclick='weatherDetail(this.form)'>";
+		                    table += "<div class='travel_name'>" + trrsrtNm + "</div>"
 		    	            table += "<div class='travel_location t_weather'>";
 		    	            table += "<ul>";
 		    	            table += "<li class='travel_location_region'>" + regionName + "</li>";
@@ -216,7 +226,7 @@
 		    	            table += "<li class='travel_temp_low'>" + wthrTMax + "°C</li>";
 		    	            table += "</ul>";
 		    	            table += "</div>";
-		    	            table += "</div>";
+		    	            table += "</a>";
 		    	            table += "</div>";
 		                
 		    	        });
@@ -253,15 +263,167 @@
 			return result_data;
 		 } 
 	</script>
-
+<%-- 	
 	<script type="text/javascript">
-			function clearPlaceholder(input) {
-				input.placeholder = ''; // 클릭 시 placeholder 제거
-			}
+	function weatherDetail(f) {
+	    // form 요소가 아닌 클릭된 `a.travel_weather` 요소의 부모 `travel_box`를 선택합니다.
+	    const travelBox = $(f).closest('.travel_box');
+	    let travelIdx, trrsrtNm, touritEtc01, wthrDate, region, wthrTMin, wthrTMax, wthrSKY, wthrPOP, wthrPM10;
+
+	    // 기존 데이터를 `data-` 속성 등으로 `a` 태그에 저장한 경우 해당 값을 추출할 수 있습니다.
+	    const regionName = travelBox.find('.travel_location_region').text();
+
+	    // weather 섹션 클릭 시 travel_box 영역을 날씨 정보로 변환
+        $(document).on('click', '.travel_weather', function () {
+            $('.travel_box').each(function () {
+                // travellistdb에서 첫 번째 항목의 region 값을 가져와 비교
+                const { travelIdx, trrsrtNm, touritEtc01, region } = travellistdb[0];
+                
+                // pjweather에서 해당 region의 데이터 필터링
+                const filteredWeatherData = pjweather.filter(data => data.region === region);
+
+                // HTML 테이블 생성
+                let table = "";
+                table += "<h2>" + touritEtc01 + "</h2>";
+                table += "<p>여행지 이름: " + trrsrtNm + "</p>";
+                table += "<p>강수확률: " + wthrPOP : "N/A") + "%</p>";
+                table += "<p>미세먼지: " + wthrPM10 : "N/A") + "</p>";
+
+                table += "<table>";
+                table += "<thead><tr><th>일자</th><th>최저기온</th><th>최고기온</th><th>날씨</th><th>강수확률</th></tr></thead>";
+                table += "<tbody>";
+
+                // 필터링된 날씨 데이터를 통해 배열로 테이블 행 생성
+                for (let i = 0; i < filteredWeatherData.length; i++) {
+                    let { wthrDate, wthrTMin, wthrTMax, wthrSKY, wthrPOP } = filteredWeatherData[i];
+                    
+                    table += "<tr>";
+                    table += "<td>" + wthrDate[i] + "</td>";
+                    table += "<td>" + wthrTMin[i] + "°C</td>";
+                    table += "<td>" + wthrTMax[i] + "°C</td>";
+                    table += "<td>" + wthrSKY[i] + "</td>";
+                    table += "<td>" + wthrPOP[i] + "%</td>";
+                    table += "</tr>";
+                }
+
+                table += "</tbody></table>";
+
+                // travel_box에 테이블 HTML 삽입
+                $(this).html(table);
+                $(this).css({
+                    backgroundColor: '#ddf7d8', // 배경색
+                    textAlign: 'center',
+                    color: '#333',
+                    padding: '10px'
+                });
+            });
+        });
+	}
 	
-			function resetPlaceholder(input) {
-				input.placeholder = '지금 당신을 위한 여행지를 검색 해보세요'; // 포커스 해제 시 placeholder 복원
-			}
+    $(document).ready(function () {
+	    let travelIdx, trrsrtNm, touritEtc01, wthrDate, region, wthrTMin, wthrTMax, wthrSKY, wthrPOP, wthrPM10;
+    
+	    // weather 섹션 클릭 시 travel_box 영역을 날씨 정보로 변환
+        $(document).on('click', '.travel_weather', function () {
+            $('.travel_box').each(function () {
+                // travellistdb에서 첫 번째 항목의 region 값을 가져와 비교
+                const { travelIdx, trrsrtNm, touritEtc01, region } = travellistdb[0];
+                
+                // pjweather에서 해당 region의 데이터 필터링
+                const filteredWeatherData = pjweather.filter(data => data.region === region);
+
+                // HTML 테이블 생성
+                let table = "";
+                table += "<h2>" + touritEtc01 + "</h2>";
+                table += "<p>여행지 이름: " + trrsrtNm + "</p>";
+                table += "<p>강수확률: " + (filteredWeatherData.length > 0 ? filteredWeatherData[0].wthrPOP : "N/A") + "%</p>";
+                table += "<p>미세먼지: " + (filteredWeatherData.length > 0 ? filteredWeatherData[0].wthrPM10 : "N/A") + "</p>";
+
+                table += "<table>";
+                table += "<thead><tr><th>일자</th><th>최저기온</th><th>최고기온</th><th>날씨</th><th>강수확률</th></tr></thead>";
+                table += "<tbody>";
+
+                // 필터링된 날씨 데이터를 통해 배열로 테이블 행 생성
+                for (let i = 0; i < filteredWeatherData.length; i++) {
+                    let { wthrDate, wthrTMin, wthrTMax, wthrSKY, wthrPOP } = filteredWeatherData[i];
+                    
+                    table += "<tr>";
+                    table += "<td>" + wthrDate + "</td>";
+                    table += "<td>" + wthrTMin + "°C</td>";
+                    table += "<td>" + wthrTMax + "°C</td>";
+                    table += "<td>" + wthrSKY + "</td>";
+                    table += "<td>" + wthrPOP + "%</td>";
+                    table += "</tr>";
+                }
+
+                table += "</tbody></table>";
+
+                // travel_box에 테이블 HTML 삽입
+                $(this).html(table);
+                $(this).css({
+                    backgroundColor: '#ddf7d8', // 배경색
+                    textAlign: 'center',
+                    color: '#333',
+                    padding: '10px'
+                });
+            });
+        });
+    });
 	</script>
+
+	table += "<h2>" + regionName + "</h2>";
+	<p>강수확률: wthrPOP</p>
+	<p>미세먼지: wthrPM10</p>
+	<thead><th>일자<td><td>최저기온</td><td>최고기온</td>날씨<td></td><td>강수량</td></th></thead>
+	(travellistdb의 region) == (pjweather의 region)인 pjweather 데이터를 가져와라
+	for문을 통해 배열로 정렬
+	<tbody>
+		<tr><td>wthrDate[i]</td><td>wthrTMin[i]</td><td>wthrTMax[i]</td><td>wthrSKY[i]</td><td>wthrPOP[i]</td></tr>
+	</tbody> -->
+	
+	 --%>
+	
+	
+	
+	
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

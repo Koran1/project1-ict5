@@ -26,11 +26,11 @@
 	  <header class="p-3 mb-3 border-bottom">
 	    <div class="container">
 	      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-	        <a href="/main" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+	        <a href="/main_go" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
 	          <svg class="bi me-2" width="40" height="32" role="img" aria-label="HOME">
 	          <img src="resources/images/logo.png" width="220"></svg>
 	        </a>
-	        
+	        <!-- 검색  -->
 	        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="/search_go" method="get" autocomplete="on">
 	          <input type="search" class="form-control" placeholder="Travel search..." aria-label="Search" name="keyword" value="${keyword}">
 	        </form>

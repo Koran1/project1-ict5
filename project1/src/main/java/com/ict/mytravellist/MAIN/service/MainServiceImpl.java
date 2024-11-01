@@ -22,16 +22,8 @@ public class MainServiceImpl implements MainService {
         // System.out.println("getRandomList MainServiceImpl 통과");
         return list;
     }
-	 
-    // 키워드로 검색
-    @Override
-    public List<TravelDBVO> getSearchList(String keyword) {
-        List<TravelDBVO> list = mainDAO.getSearchList(keyword);
-        System.out.println("getSearchList MainService 통과");
-        return list;
-    }
 
-    // 키워드와 지역으로 검색
+	// 키워드와 지역으로 검색
     @Override
     public List<TravelDBVO> searchKeywordAndRegion(String keyword, String region) {
         List<TravelDBVO> list = mainDAO.searchKeywordAndRegion(keyword, region);
@@ -52,8 +44,20 @@ public class MainServiceImpl implements MainService {
 		return mainDAO.getWeatherList();
 	}
 
+
 	@Override
-	public List<TravelDBVO> getTralDetail(String travelIdx) {
+	public int getSearchCount(String keyword) {
+		// System.out.println("getSearchCount MainServiceImpl 통과");
+		return mainDAO.getSearchCount(keyword);
+	}
+
+	@Override
+	public List<TravelDBVO> getSearchPageList(int limit, int offset, String keyword) {
+		return mainDAO.getSearchPageList(limit, offset, keyword);
+	}
+
+	@Override
+	public List<TravelDBVO> getSearchList(String keyword) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -17,9 +17,9 @@
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
-	padding-top: 50px;
 	box-shadow: 0 0 3px #8f8f8f;
 	text-align: left;
+	padding-bottom: 50px;
 }
 
 .main_left {
@@ -29,7 +29,14 @@
 
 .travel_result {
 	font-size: 20px;
-	margin-left: 10px;
+	display: flex;
+	gap: 50px;
+}
+
+#region-filter {
+	width: 15%;
+	text-align: center;
+	border-radius: 20px;
 }
 
 .main_center {
@@ -91,7 +98,7 @@
 	height: 250px;
 }
 
-/* 날씨 정보 */
+/* 여행 정보 */
 .travel_info {
 	width: 100%;
 	text-align: left;
@@ -99,8 +106,8 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	height: 120px;
 	margin-top: 20px;
+	min-height: 120px;
 }
 
 .travel_location {
@@ -111,6 +118,7 @@
 	font-size: 20px;
 	margin-bottom: 12px;
 	font-weight: bold;
+	color: rgb(100, 50, 15, 10);
 }
 
 .travel_location_addr, .travel_location_phone {
@@ -122,66 +130,63 @@
 .main_right {
 	flex: 1 1 10%;
 }
+
+.paging {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+	gap: 30px;
+	font-size: 20px;
+	font-weight: bold;
+	color: gray;
+	padding-left: 50px;
+}
 </style>
 </head>
 <body>
-	<jsp:include page="header.jsp"/>
+	<jsp:include page="header.jsp" />
 
 	<!-- 메인 컨텐츠 -->
 	<!-- main -->
 	<div class="main_container">
-		<div class="main_left">
-			<div class="travel_result">
-				<p>검색결과</p>
-				<p>: ${keyword} ${list.size()}건</p>
-			</div>
-		</div>
+		<div class="main_left"></div>
 
 		<div class="main_center">
+			<div class="travel_result">
+				<p>검색결과 ${keyword} ${count}건</p>
+				<br> <select id="region-filter">
+					<option value="0">전체</option>
+					<option value="1">서울</option>
+					<option value="2">부산</option>
+					<option value="3">대구</option>
+					<option value="4">인천</option>
+					<option value="5">광주</option>
+					<option value="6">대전</option>
+					<option value="7">울산</option>
+					<option value="8">경기</option>
+					<option value="9">강원</option>
+					<option value="10">충북</option>
+					<option value="11">충남</option>
+					<option value="12">전북</option>
+					<option value="13">전남</option>
+					<option value="14">경북</option>
+					<option value="15">경남</option>
+					<option value="16">제주</option>
+				</select>
+			</div>
 			<c:choose>
 				<c:when test="${empty list}">
 					<h2>검색 결과가 존재하지 않습니다</h2>
 				</c:when>
 				<c:otherwise>
 					<section class="searchs">
-						<form id="regionForm" action="/region_search" method="get">
-							<input type="hidden" name="keyword" value="${keyword}" /> <select
-								class="region_menu" name="region"
-								onchange="document.getElementById('regionForm').submit();">
-								<option value="">:: 지역 선택 ::</option>
-								<c:forEach var="k" begin="1" end="16">
-									<option value="${k}">
-										<c:if test="${region == k}">selected</c:if>
-										<c:choose>
-											<c:when test="${k == 1}">서울</c:when>
-											<c:when test="${k == 2}">부산</c:when>
-											<c:when test="${k == 3}">대구</c:when>
-											<c:when test="${k == 4}">인천</c:when>
-											<c:when test="${k == 5}">광주</c:when>
-											<c:when test="${k == 6}">대전</c:when>
-											<c:when test="${k == 7}">울산</c:when>
-											<c:when test="${k == 8}">경기</c:when>
-											<c:when test="${k == 9}">강원</c:when>
-											<c:when test="${k == 10}">충북</c:when>
-											<c:when test="${k == 11}">충남</c:when>
-											<c:when test="${k == 12}">전북</c:when>
-											<c:when test="${k == 13}">전남</c:when>
-											<c:when test="${k == 14}">경북</c:when>
-											<c:when test="${k == 15}">경남</c:when>
-											<c:otherwise>제주</c:otherwise>
-										</c:choose>
-									</option>
-								</c:forEach>
-							</select>
-						</form>
-
 						<div class="main_wrapper">
 							<c:forEach var="k" items="${list}">
-								<div class="travel_box">
+								<div class="travel_box" data-category="${k.region}">
 									<div class="travel_image">
-										<a href="/detail_go?trrsrtNm=${k.trrsrtNm}"> <img
-											alt="관광지 이미지" src="${k.placeImg01}">
-										</a>
+										<a href="/travelDetail_go?travelIdx=${k.travelIdx}"> <img
+											alt="관광지 이미지" src="${k.placeImg01}"></a>
 									</div>
 									<div class="travel_info">
 										<div class="travel_location">
@@ -203,15 +208,49 @@
 					</section>
 				</c:otherwise>
 			</c:choose>
+
+			<div class="paging">
+				<!-- 이전 버튼 -->
+				<c:choose>
+					<c:when test="${paging.beginBlock <= paging.pagePerBlock}">
+						<div class="disable">◀ 이전</div>
+					</c:when>
+					<c:otherwise>
+						<div>
+							<a href="/search_go?cPage=${paging.beginBlock - paging.pagePerBlock}&keyword=${keyword}">◀이전</a>
+						</div>
+					</c:otherwise>
+				</c:choose>
+				<!-- 페이지번호 -->
+				<c:forEach begin="${paging.beginBlock}" end="${paging.endBlock}" step="1" var="k">
+					<!-- 현재 페이지 (링크x)와 현재 페이지가 아닌 것을 구분하자 -->
+					<c:if test="${k == paging.nowPage}">
+						<li class="now">${k}</li>
+					</c:if>
+					<c:if test="${k != paging.nowPage}">
+						<li><a href="/search_go?cPage=${k}&keyword=${keyword}">${k}</a></li>
+					</c:if>
+				</c:forEach>
+				<!-- 다음 버튼 -->
+				<c:choose>
+					<c:when test="${paging.endBlock >= paging.totalPage}">
+						<div class="disable">다음 ▶</div>
+					</c:when>
+					<c:otherwise>
+						<div>
+							<a href="/search_go?cPage=${paging.beginBlock + paging.pagePerBlock}&keyword=${keyword}">다음▶</a>
+						</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
 
 		<div class="main_right">
-			<jsp:include page="scroll.jsp"/>
+			<jsp:include page="scroll.jsp" />
 		</div>
 	</div>
 
-	<jsp:include page="footer.jsp"/>
-
+	<jsp:include page="footer.jsp" />
 </body>
 
 </html>
