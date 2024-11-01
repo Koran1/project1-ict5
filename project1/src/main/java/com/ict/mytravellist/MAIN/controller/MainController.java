@@ -3,7 +3,6 @@ package com.ict.mytravellist.MAIN.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.ict.mytravellist.MAIN.service.MainServiceImpl;
 import com.ict.mytravellist.vo.TravelDBVO;
+import com.ict.mytravellist.vo.WeatherVO;
 
 @RestController
 public class MainController {
@@ -25,9 +25,12 @@ public class MainController {
 	
 	// HOME
 	@GetMapping("/main_go")
-	public String maiPage(Model model) {
-		System.out.println("main_go controller 통과");
-		return "main";
+	public ModelAndView maiPage(Model model) {
+		ModelAndView mv = new ModelAndView("MAIN/main");
+		// System.out.println("main_go controller 통과");
+		List<WeatherVO> list = mainService.getWeatherList();
+		mv.addObject("list", list);
+		return mv;
 	}
 	
 	// 랜덤 지역 이미지 불러오기
@@ -38,7 +41,7 @@ public class MainController {
 		if(list != null) {
 			Gson gson = new Gson();
 			String jsonString = gson.toJson(list);
-			System.out.println();
+			// System.out.println();
 			return jsonString;
 		}
 		return "fail";
@@ -47,7 +50,7 @@ public class MainController {
     // 키워드로 검색
     @GetMapping("/search_go")
     public ModelAndView mainSearch(@ModelAttribute("keyword") String keyword) {
-        ModelAndView mv = new ModelAndView("search");
+        ModelAndView mv = new ModelAndView("MAIN/search");
         List<TravelDBVO> list = mainService.getSearchList(keyword);
 
         mv.addObject("list", list);
@@ -62,7 +65,7 @@ public ModelAndView regionSearch(
         @RequestParam("keyword") String keyword,
         @RequestParam(value = "region", required = false) String region) {
 
-    	ModelAndView mv = new ModelAndView("search");
+    	ModelAndView mv = new ModelAndView("MAIN/search");
         List<TravelDBVO> list;
 
         if (region == null || region.isEmpty()) {
@@ -79,14 +82,14 @@ public ModelAndView regionSearch(
     }
 
     // 특정 관광지의 상세 정보 조회
-    @GetMapping("/detail_go")
+    @GetMapping("/travelDetail_go")
     public ModelAndView detail(@ModelAttribute("travelIdx") String trrsrtNm) {
-        ModelAndView mv = new ModelAndView("travlDetail");
+        ModelAndView mv = new ModelAndView("MAIN/travlDetail");
         List<TravelDBVO> list = mainService.getDetailList(trrsrtNm);
 
         if (!list.isEmpty()) {
             mv.addObject("list", list.get(0));
-            System.out.println("detail_go Controller 통과: " + trrsrtNm);
+            System.out.println("detail_go Controller 통과: " + list);
         } else {
             System.out.println("해당 관광지 정보를 찾을 수 없습니다: " + trrsrtNm);
         }
@@ -94,12 +97,13 @@ public ModelAndView regionSearch(
         return mv;
     }
     
-    // 카카오맵 연동
-    @GetMapping("/kakaoMap")
-	public ModelAndView kakaoMap() {
-    	
-		return new ModelAndView("kakaoMap");
-	}	
+	/*
+	 * // 카카오맵 연동
+	 * 
+	 * @GetMapping("/kakaoMap") public ModelAndView kakaoMap() {
+	 * 
+	 * return new ModelAndView("MAIN/travlDetail"); }
+	 */
 	
 	
 	

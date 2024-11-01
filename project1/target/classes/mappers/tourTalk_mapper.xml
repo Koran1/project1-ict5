@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tourTalk">
+	<select id="list" resultType="tourtvo">
+		select * from tourTalk order by userIdx desc
+	</select> 
+	
+	<insert id="insert" parameterType="tourtvo">
+		insert into tourTalk(tourTalkIdx, userId, tourTalkContent, tourTalkReg, hit)
+		values(#{tourTalkIdx}, #{userId},#{tourTalkContent}, now(), 0)
+	</insert>
+	
+	<select id="count" resultType="int">
+		select count(*) from tourTalk
+	</select>
+	
+	<!--  결과 행 제한하기 - LIMIT = 출력값을 제한함. (MySQL(MariaDB)과 PostgreSQL)
+ 	      SELECT 명령 FROM 테이블명 LIMIT 행수 [OFFSET 시작행]; 
+ 	       offset = limit * (현재페이지 - 1)
+ 	      LIMIT 구는 SELECT 명령의 마지막에 지정하는 것으로 WHERE구나 ORDER BY구의 뒤에 지정한다.
+ 	-->
+	<!-- <select id="pageList" parameterType="Map" resultType="tourtvo">
+		SELECT * FROM tourTalk_t order by userIdx desc limit #{limit} offset #{offset};
+	</select> -->
+	
+	<update id="hitupdate" parameterType="String">
+		update tourTalk set hit = hit + 1 where userId = #{userId} 
+	</update>
+	
+	<!-- <select id="detail" parameterType="String" resultType="tourtvo">
+		select * from tourTalk_t where userIdx = #{userIdx}
+	</select>
+	
+	<select id="clist" parameterType="String" resultType="cvo">
+		select * from comment_t where userIdx = #{userIdx}
+	</select>
+	
+	<insert id="cinsert" parameterType="cvo">
+		insert into comment_t(writer, content, write_date, userIdx)
+		values(#{writer}, #{content}, now(), #{userIdx})
+	</insert>
+	
+	<delete id="cdelete" parameterType="String">
+		delete from comment_t where c_idx = #{c_idx}
+	</delete>
+	
+	삭제 이지만 active = 1 로 변경하는 업데이트
+	<update id="delete" parameterType="String">
+		update tourTalk_t set active = 1 where userIdx = #{userIdx}
+	</update>
+	
+	<update id="update" parameterType="tourtvo">
+		update 	tourTalk_t 
+		set subject = #{subject}, content=#{content}, writer = #{writer}, f_name = #{f_name} 
+		where userIdx = #{userIdx}
+	</update>
+ -->
+
+</mapper>

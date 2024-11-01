@@ -19,7 +19,7 @@ public class MainServiceImpl implements MainService {
 	@Override
     public List<TravelDBVO> getRandomList() {
     	List<TravelDBVO> list = mainDAO.getRandomList();
-        System.out.println("getRandomList MainServiceImpl 통과");
+        // System.out.println("getRandomList MainServiceImpl 통과");
         return list;
     }
 	 
@@ -43,14 +43,13 @@ public class MainServiceImpl implements MainService {
     @Override
     public List<TravelDBVO> getDetailList(String travelIdx) {
         List<TravelDBVO> list = mainDAO.getDetailList(travelIdx);
-        System.out.println("getDetailList MainService 통과");
+        // System.out.println("getDetailList MainService 통과");
         return list;
     }
 
 	@Override
-	public List<WeatherVO> getWeatherList(String travelIdx, String region) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<WeatherVO> getWeatherList() {
+		return mainDAO.getWeatherList();
 	}
 
 	@Override
