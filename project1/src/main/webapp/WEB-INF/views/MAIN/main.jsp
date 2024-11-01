@@ -131,6 +131,13 @@
     transition: opacity 0.8s ease-in-out; /* 페이드 효과 */
     gap: 30px; /* 각 박스 사이에 20px 간격 추가 */
 }
+
+/* 추가 CSS */
+.travel_box_detail{
+	width: 100%;
+	height: 100%;
+}
+
 </style>
 </head>
 <body>
@@ -156,7 +163,7 @@
 	document.addEventListener("DOMContentLoaded", function () {
 		    // 페이지 로드 시 리스트 초기 렌더링
 		    loadTravelList();
-
+		    enableDetail();
 		    // 5초마다 리스트 갱신
 /* 		    setInterval(() => {
 		        loadTravelList();
@@ -185,6 +192,7 @@
 		    	            let placeImg01 = item.placeImg01;
 		    	            let trrsrtNm = item.trrsrtNm;
 
+<<<<<<< Updated upstream
 		    	            table += "<div class='travel_box'>";
 <<<<<<< HEAD
 		    	            table += "<a href='" + travelIdx + "' class='travel_image'>";
@@ -192,6 +200,24 @@
 		    	            table += "<a href='/travelDetail_go?travelIdx=" + travelIdx + "' class='travel_image'>";
 >>>>>>> 346571ba875695c0df804bcb4134dd75ed7ab24b
 		    	            table += "<img src='" + placeImg01 + "' alt='" + trrsrtNm + "'></a>";
+=======
+		    	        data.forEach(function(list, i) {
+		    	        	travelIdx = list.travelIdx;
+		    	            placeImg01 = list.placeImg01;
+		    	            trrsrtNm = list.trrsrtNm;
+		    	            region = list.region;
+		    	            regionName = list.touritEtc01;
+		    	            
+		                   	let k = load(region);
+		                    wthrDate =  k[0].wthrDate;
+		    	            wthrTMin = k[0].wthrTMin;
+		    	            wthrTMax = k[0].wthrTMax;
+		    	            wthrSKY = k[0].wthrSKY_PTY;
+		    	            
+		    	            table += "<div class='travel_box'>";
+		    	            table += "<div class='travel_box_detail'>"
+		    	            table += "<a href='/travelDetail_go?travelIdx=" + travelIdx + "' class='travel_image'><img src='" + placeImg01 + "' alt='" + trrsrtNm + "'></a>";
+>>>>>>> Stashed changes
 		    	            table += "<div class='travel_weather'>";
 		    	            table += "<div class='travel_location'>";
 		    	            table += "<ul>";
@@ -214,10 +240,41 @@
 		    	            table += "</div>";
 		    	            table += "</div>";
 		    	            table += "</div>";
+<<<<<<< Updated upstream
+=======
+		                
+		    	            table += "<div class='travel_temp_detail' style='display:none'>";
+		    	            table += "<table>";
+		    	            table += "<tr><th>날짜</th><th>최저</td><th>최고</th><th>날씨 (강수확률)</th></tr>";
+		    	            table += "<tr><td>"+k[1].wthrDate+"</td><td>"+k[1].wthrTMin+
+		    	            	"</td><td>"+k[1].wthrTMax+"</td><td>"+k[1].wthrSKY_PTY+" ("+k[1].wthrPOP+"%)</td></tr>";
+		    	            table += "<tr><td>"+k[2].wthrDate+"</td><td>"+k[2].wthrTMin+
+		    	            	"</td><td>"+k[2].wthrTMax+"</td><td>"+k[2].wthrSKY_PTY+" ("+k[2].wthrPOP+"%)</td></tr>";
+		    	            table += "<tr><td>"+k[3].wthrDate+"</td><td>"+k[3].wthrTMin+
+		    	            	"</td><td>"+k[3].wthrTMax+"</td><td>"+k[3].wthrSKY_PTY+" ("+k[3].wthrPOP+"%)</td></tr>";
+		    	            table += "<tr><td>"+k[4].wthrDate+"</td><td>"+k[4].wthrTMin+
+		    	            	"</td><td>"+k[4].wthrTMax+"</td><td>"+k[4].wthrSKY_PTY+" ("+k[4].wthrPOP+"%)</td></tr>";
+		    	            table += "<tr><td>"+k[5].wthrDate+"</td><td>"+k[5].wthrTMin+
+		    	            	"</td><td>"+k[5].wthrTMax+"</td><td>"+k[5].wthrSKY_PTY+" ("+k[5].wthrPOP+"%)</td></tr>";
+		    	            table += "<tr><td>"+k[6].wthrDate+"</td><td>"+k[6].wthrTMin+
+		    	            	"</td><td>"+k[6].wthrTMax+"</td><td>"+k[6].wthrSKY_PTY+" ("+k[6].wthrPOP+"%)</td></tr>";
+		    	            table += "<tr><td>"+k[7].wthrDate+"</td><td>"+k[7].wthrTMin+
+		    	            	"</td><td>"+k[7].wthrTMax+"</td><td>"+k[7].wthrSKY_PTY+" ("+k[7].wthrPOP+"%)</td></tr>";
+		    	            table += "<tr><td>"+k[8].wthrDate+"</td><td>"+k[8].wthrTMin+
+		    	            	"</td><td>"+k[8].wthrTMax+"</td><td>"+k[8].wthrSKY_PTY+" ("+k[8].wthrPOP+"%)</td></tr>";
+		    	            table += "<tr><td>"+k[9].wthrDate+"</td><td>"+k[9].wthrTMin+
+		    	            	"</td><td>"+k[9].wthrTMax+"</td><td>"+k[9].wthrSKY_PTY+" ("+k[9].wthrPOP+"%)</td></tr>";
+		    	        	table += "</table></div>";
+		    	            table += "</div>";
+		    	            
+>>>>>>> Stashed changes
 		    	        });
+		    	        
 
 		    	        $("#travel-list").html(table); // HTML 주입
 		                $("#travel-list").fadeIn(800); // 새 리스트 페이드 인
+		                
+		                
 		    	    },
 		    	    error: function (xhr, status, error) {
 		    	        console.error("데이터를 가져오는 데 실패했습니다:", error);
@@ -225,8 +282,49 @@
 		    	});
 		    }
 		}); 
+<<<<<<< Updated upstream
     </script>
     
+=======
+    	
+		function enableDetail(){
+			document.querySelector('.travel_weather').addEventListener('click', function(){
+				alert(11);
+	   			document.querySelector('.travel_box_detail').style.display = "none";
+	   	 		document.querySelector('.travel_temp_detail').style.display = "block";
+	   		});
+	   		document.querySelector('.travel_box').addEventListener('click', function(){
+				alert(22);
+	   			document.querySelector('.travel_box_detail').style.display = "block";
+	   			document.querySelector('.travel_temp_detail').style.display = "none";
+	   		}); 
+		}
+   		
+   		
+		function load(region){
+			let result_data;
+			$.ajax({
+				url : "/getwthrinfo",
+				method : "post",
+				data : "region="+region,
+				dataType : "json",
+				async:false,
+				success : function(data){
+					wthrDate = data[0].wthrDate;
+					wthrTMin = data[0].wthrTMin;
+					wthrTMax = data[0].wthrTMax;
+					wthrSKY = data[0].wthrSKY;
+					result_data = data;
+				},
+			    error : function(){
+			    	alert("날씨정보 가져오기 실패")
+			    }
+			 });
+			return result_data;
+		 } 
+	</script>
+
+>>>>>>> Stashed changes
 	<script type="text/javascript">
 			function clearPlaceholder(input) {
 				input.placeholder = ''; // 클릭 시 placeholder 제거

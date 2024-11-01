@@ -25,23 +25,23 @@
 <body>
 	<div id="container">
 		<section id="flex_left">
-			<a href="/go_main"><img id="logo" alt="" src="resources/project_images/logo.png"></a>
+			<a href="/go_main"><img id="logo" alt="" src="resources/images/logo.png"></a>
 			<p id="name">홍길동님</p>
 			<div id="article_container">
 			<article>
-				<img alt="" src="resources/project_images/my_comment.png" style="float: left;">
+				<img alt="" src="resources/images/my_comment.png" style="float: left;">
 				내 댓글 관리
 			</article>
 			<article>
-				<img alt="" src="resources/project_images/update.png" style="float: left;">
+				<img alt="" src="resources/images/update.png" style="float: left;">
 				회원정보 수정
 			</article>
 			<article>
-				<img alt="" src="resources/project_images/change_pw.png" style="float: left;">
+				<img alt="" src="resources/images/change_pw.png" style="float: left;">
 				비밀번호 변경
 			</article>
 			<article>
-				<img alt="" src="resources/project_images/member_out.png" style="float: left;">
+				<img alt="" src="resources/images/member_out.png" style="float: left;">
 				회원 탈퇴
 			</article>
 			</div>

@@ -1,7 +1,8 @@
 package com.ict.mytravellist.vo;
 
 public class NoticeVO {
-	private String noticeIdx, noticeSubject, noticeFile, noticeContent, noticeReg, noticeLevel, noticeStatus, noticeEtc01, noticeEtc02;
+	private String noticeIdx, noticeSubject, noticeFile, noticeContent, noticeReg, 
+	noticeLevel, noticeStatus, noticeEtc01, noticeEtc02;
 
 	public String getNoticeIdx() {
 		return noticeIdx;
