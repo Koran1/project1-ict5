@@ -1,4 +1,4 @@
-package com.ict.project.controller;
+package mypage.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,7 @@ public class ProjectController {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
-	@RequestMapping("/go_main")
+	@GetMapping("/go_main")
 	public ModelAndView goMain() {
 		ModelAndView mav = new ModelAndView("project_view/main_page");
 		
@@ -38,18 +39,18 @@ public class ProjectController {
 	}
 	
 	@RequestMapping("/go_my_page")
-	public ModelAndView goMyPage() {
+	public ModelAndView goMyPage(@ModelAttribute("isOk") String isOk) {
 		ModelAndView mav = new ModelAndView("project_view/MEM_myPage");
 		
 		return mav ;
 	}
 	
-	@RequestMapping("/go_identify")
-	public ModelAndView goIdentify(@ModelAttribute("cmd") String cmd, HttpServletRequest request) {
+	@GetMapping("/go_identify")
+	public ModelAndView goIdentify(@ModelAttribute("cmd") String cmd, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		try {
-			request.getSession().setAttribute("userId", "testid"); // ìž„ì‹œë¡œ ì„¸ì…˜ ì„¤ì •
-			String userId = (String) request.getSession().getAttribute("userId");
+			session.setAttribute("userId",  "testid");
+			String userId = (String) session.getAttribute("userId");
 			mav.addObject("userId", userId);
 			mav.setViewName("project_view/MEM_myPage_identityCheck");
 			
@@ -72,7 +73,7 @@ public class ProjectController {
 			
 			String dbPw = dbUvo.getUserPw();
 	//		if (passwordEncoder.matches(pw, dbPw)) { 
-			if (true) { // ìž„ì‹œì½”ë“œìž„. ì¶”í›„ì— ìœ„ ì½”ë“œë¡œ ë³€ê²½
+			if (true) { // ?ž„?‹œì½”ë“œ?ž„. ì¶”í›„?— ?œ„ ì½”ë“œë¡? ë³?ê²?
 				mav.setViewName("redirect:/" + cmd);
 			}else {
 				mav.setViewName("project_view/MEM_myPage_identityCheck");
@@ -87,49 +88,50 @@ public class ProjectController {
 	
 	
 	
-	@RequestMapping("/go_my_comment")
+	@GetMapping("/go_my_comment")
 	public ModelAndView goMyComment() {
 		ModelAndView mav = new ModelAndView("project_view/MEM_myPage_myComment");
 		
 		 return mav ;
 	}
 	
-	@RequestMapping("/go_update")
+	@GetMapping("/go_update")
 	public ModelAndView goUpdate(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("project_view/MEM_myPage_update");
+		ModelAndView mav = new ModelAndView();
 		 String userId =  (String) request.getSession().getAttribute("userId");
+		 // ?´ë¦?, ?•„?´?””, ?´ë©”ì¼, ì£¼ì†Œ, ê´??‹¬ì§??—­ 123
 		try {
-			
+			UserVO detail = projectService.getUserDetail(userId);
+			mav.addObject("detail", detail);
+			mav.setViewName("project_view/MEM_myPage_update");
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e);
+			mav.setViewName("project_view/error");
 		}
-		 
-//		 projectService.getUserDetail(userId);
 		return mav ;
 	}
 	
-	@RequestMapping("/go_pw_change")
+	@GetMapping("/go_pw_change")
 	public ModelAndView goPwChange() {
 		ModelAndView mav = new ModelAndView("project_view/MEM_myPage_changePw");
 		
 		return mav ;
 	}
 	
-	@RequestMapping("/go_user_out")
+	@GetMapping("/go_user_out")
 	public ModelAndView goUserOut() {
 		ModelAndView mav = new ModelAndView("project_view/MEM_myPage_userOut");
 		
 		return mav ;
 	}
 	
-	@RequestMapping("/go_update_ok")
+	@PostMapping("/go_update_ok")
 	public ModelAndView goUpdateOK(UserVO uvo) {
 		ModelAndView mav = new ModelAndView();
 		try {
 			String result = projectService.getUserUpdate(uvo);
-			if (result == "1") {
-				mav.setViewName("project_view/MEM_myPage");
-				mav.addObject("result", result);
+			if (result != "0") {
+				mav.setViewName("redirect:/go_my_page?isOk=yes");
 			}else{
 				mav.setViewName("project_view/error");
 			}
@@ -139,5 +141,46 @@ public class ProjectController {
 		}
 		return mav;
 	}
+	@PostMapping("/go_pw_change_ok")
+	public ModelAndView goPwChangeOK(String userPw, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		try {
+		String userId = (String) session.getAttribute("userId");
+		String encodePw = passwordEncoder.encode(userPw);
+		
+		UserVO uvo = new UserVO();
+		uvo.setUserPw(encodePw);
+		uvo.setUserId(userId);
+		
+		int result = projectService.getChangePw(uvo);
+		if (result > 0) {
+			mav.setViewName("redirect:/go_my_page?isOk=yes");
+		}else {
+			mav.setViewName("project_view/error");
+		}
+		} catch (Exception e) {
+			System.out.println(e);
+			mav.setViewName("project_view/error");
+		}
+		return mav ;
+	}
 	
+	@PostMapping("/go_user_out_ok")
+	public ModelAndView goUserOutOK(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		try {
+			String userId = (String) session.getAttribute("userId");
+			int result = projectService.getUserOut(userId);
+			if (result > 0) {
+				mav.setViewName("redirect:/go_main?isOk=yes");
+				session.invalidate();
+			}else {
+				mav.setViewName("project_view/error");
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+			mav.setViewName("project_view/error");
+		}
+		return mav ;
+	}
 }

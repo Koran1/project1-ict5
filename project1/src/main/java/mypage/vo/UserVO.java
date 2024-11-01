@@ -1,4 +1,4 @@
-package com.ict.project.vo;
+package mypage.vo;
 
 public class UserVO {
 	private String userIdx, userId, userPw, userName, userMail, userAddr, userLevel, userReg, userUpdReg, userConnReg,  userFavor01, userFavor02, userFavor03 ;

@@ -23,8 +23,8 @@
 </head>
 <body>
 <script type="text/javascript">
-<c:if test="${result == '1'}">
-	alert("회원정보 수정이 완료되었습니다.");
+<c:if test="${isOk == 'yes'}">
+	alert("정상적으로 완료되었습니다.");
 </c:if>
 </script>
 <div id="container">

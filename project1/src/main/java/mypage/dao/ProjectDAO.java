@@ -1,4 +1,4 @@
-package com.ict.project.dao;
+package mypage.dao;
 
 import java.util.List;
 
@@ -12,5 +12,8 @@ public interface ProjectDAO {
 	public String delTTChked(String[] chkedIdx) throws Exception;
 	public UserVO getUserDetail(String userId) throws Exception;
 	public int countData(String userId) throws Exception;
+	public int getChangePw(UserVO uvo) throws Exception;
+	public int getUserOut(String Userid) throws Exception;
+	
 	 
 }

@@ -4,7 +4,8 @@
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="projectMapper">
 	<update id="getUserUpdate" parameterType="com.ict.project.vo.UserVO">
-		update pjuser set userMail = #{userMail}, userAddr = #{userAddr} where userIdx = #{userIdx}
+		update pjuser set userMail = #{userMail}, userAddr = #{userAddr}, 
+		userFavor01 = #{userFavor01}, userFavor02 = #{userFavor02}, userFavor03 = #{userFavor03} where userId = #{userId}
 	</update>	
 	<select id="getTTList" resultType="com.ict.project.vo.TourTalkVO" parameterType="Map">
 		select * from pjtourtalk where userId = #{userId} order by tourTalkReg desc limit #{limit} offset #{offset}
@@ -24,6 +25,12 @@
 	<select id="countData" parameterType="String" resultType="int">
 		select count(*) from pjtourtalk where userId = #{userId}
 	</select>
+	<update id="getChangePw" parameterType="com.ict.project.vo.UserVO">
+		update pjuser set userPw = #{userPw} where userId = #{userId}
+	</update>
+	<update id="getUserOut" parameterType="com.ict.project.vo.UserVO">
+		update pjuser set userLevel = 2 where userId = #{userId}
+	</update>
 	
 	
 </mapper>

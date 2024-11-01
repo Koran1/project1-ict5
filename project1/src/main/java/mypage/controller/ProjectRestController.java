@@ -1,4 +1,4 @@
-package com.ict.project.controller;
+package mypage.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +27,7 @@ public class ProjectRestController {
 
 	@RequestMapping(value = "/get_comment_data", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Map<String, Object> getTTList(HttpServletRequest request) { // TT = tourtalkì˜ ì•½ì
+	public Map<String, Object> getTTList(HttpServletRequest request) { // TT = tourtalk?˜ ?•½?
 		try {
 			String userId = (String) request.getSession().getAttribute("userId");
 			
@@ -69,7 +69,7 @@ public class ProjectRestController {
 				for (TourTalkVO k : list) {  
 					StringBuffer sb = new StringBuffer();
 					sb.append(k.getTourTalkContent());
-					if (sb.length() > 20) { // ëŒ“ê¸€ ë‚´ìš©ì´ ì¼ì • ê¸€ì ìˆ˜ê°€ ë„˜ì–´ê°€ë©´ ì§œë¥´ê³  '...'ë¥¼ ë¶™ì´ì
+					if (sb.length() > 20) { // ?Œ“ê¸? ?‚´?š©?´ ?¼? • ê¸?? ?ˆ˜ê°? ?„˜?–´ê°?ë©? ì§œë¥´ê³? '...'ë¥? ë¶™ì´?
 						sb.setLength(20);
 						sb.append("...");
 						k.setTourTalkContent(sb.toString());
@@ -100,7 +100,7 @@ public class ProjectRestController {
 	  
 	  @RequestMapping(value="/get_del_chked", produces="text/plain; charset=utf-8")
 	  @ResponseBody 
-	  public String getDeleteTTChked(@RequestParam(value="chkedIdx[]") String[] chkedIdx) {
+	  public String getDeleteTTChked(@RequestParam("chkedIdx[]") String[] chkedIdx) {
 		  try {
 			  String result = projectService.delTTChked(chkedIdx);
 			  

@@ -1,4 +1,4 @@
-package com.ict.project.dao;
+package mypage.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +22,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return String.valueOf(result);
 	}
 	@Override
-	public List<TourTalkVO> getTTList(String userId,  int offset, int limit) throws Exception{ // íˆ¬ì–´í†¡ select all
+	public List<TourTalkVO> getTTList(String userId,  int offset, int limit) throws Exception{ // ?ˆ¬?–´?†¡ select all
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);
 		map.put("offset", offset);
@@ -44,6 +44,14 @@ public class ProjectDAOImpl implements ProjectDAO {
 	@Override
 	public int countData(String userId) throws Exception {
 		return sqlsessionTemplate.selectOne("projectMapper.countData", userId);
+	}
+	@Override
+	public int getChangePw(UserVO uvo) throws Exception {
+		return sqlsessionTemplate.update("projectMapper.getChangePw", uvo);
+	}
+	@Override
+	public int getUserOut(String userId) throws Exception {
+		return sqlsessionTemplate.update("projectMapper.getUserOut", userId);
 	}
 
 }

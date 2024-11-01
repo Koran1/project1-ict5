@@ -79,14 +79,6 @@
 		</section>				
 	</div>
 	<script type="text/javascript">
-		
-		// 해야할것 
- /* 		   우선순위2: 내댓글 페이지 페이징 처리 하기  한 페이지당 7개씩 
-		   우선순위3: 회원정보 수정 DB연결 후 정보 뿌려주기
-		   우선순위4: 내 관심지역 변경버튼 클릭 시 팝업창으로 선택 가능하게 기능 구현
-		   우선순위5: 수정버튼 클릭 시 수정하는 로직 구현  */
-			
-	
 		 
 		 $("#comment_table").on("click", ".page_num", function() { // 페이지 번호 클릭시 이동이벤트
 			 let nowPage = $(this).text();

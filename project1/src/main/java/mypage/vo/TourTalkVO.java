@@ -1,4 +1,4 @@
-package com.ict.project.vo;
+package mypage.vo;
 
 public class TourTalkVO {
 	

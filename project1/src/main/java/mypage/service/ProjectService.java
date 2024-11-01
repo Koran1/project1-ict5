@@ -1,4 +1,4 @@
-package com.ict.project.service;
+package mypage.service;
 
 import java.util.List;
 
@@ -13,4 +13,6 @@ public interface ProjectService {
 	public String delTTChked(String[] chkedIdx) throws Exception;
 	public UserVO getUserDetail(String userId) throws Exception;
 	public int countData(String userId) throws Exception;
+	public int getChangePw(UserVO uvo) throws Exception;
+	public int getUserOut(String userId) throws Exception;
 }

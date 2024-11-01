@@ -1,4 +1,4 @@
-package com.ict.project.service;
+package mypage.service;
 
 import java.util.List;
 
@@ -17,12 +17,11 @@ public class ProjectServiceImpl implements ProjectService {
 	
 	@Override
 	public String getUserUpdate(UserVO uvo) throws Exception {
-		
 		return projectDAO.getUserUpdate(uvo);
 	}
 
 	@Override
-	public List<TourTalkVO> getTTList(String userId, int offset, int limit) throws Exception { // íˆ¬ì–´í†¡ select all
+	public List<TourTalkVO> getTTList(String userId, int offset, int limit) throws Exception { // ?ˆ¬?–´?†¡ select all
 		return projectDAO.getTTList(userId, offset, limit);
 	}
 
@@ -44,6 +43,16 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public int countData(String userId) throws Exception {
 		return projectDAO.countData(userId);
+	}
+
+	@Override
+	public int getChangePw(UserVO uvo) throws Exception {
+		return projectDAO.getChangePw(uvo);
+	}
+
+	@Override
+	public int getUserOut(String userId) throws Exception {
+		return projectDAO.getUserOut(userId);
 	}
 
 
