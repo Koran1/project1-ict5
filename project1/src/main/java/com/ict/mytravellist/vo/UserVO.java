@@ -1,15 +1,16 @@
 package com.ict.mytravellist.vo;
 
 public class UserVO {
-	private String userId, userPw, userName, userMail ,userAddr, userLevel, userReg,
-		userFavor01, userFavor02, userFavor03;
+	private String userIdx, userId, userPw, userName, userMail, userAddr, userLevel,
+		userReg, userUpdReg, userConnReg, userFavor01, userFavor02, userFavor03,
+		userEtc01, userEtc02, userEtc03, userEtc04;
 
-	public String getUserMail() {
-		return userMail;
+	public String getUserIdx() {
+		return userIdx;
 	}
 
-	public void setUserMail(String userMail) {
-		this.userMail = userMail;
+	public void setUserIdx(String userIdx) {
+		this.userIdx = userIdx;
 	}
 
 	public String getUserId() {
@@ -36,6 +37,14 @@ public class UserVO {
 		this.userName = userName;
 	}
 
+	public String getUserMail() {
+		return userMail;
+	}
+
+	public void setUserMail(String userMail) {
+		this.userMail = userMail;
+	}
+
 	public String getUserAddr() {
 		return userAddr;
 	}
@@ -58,6 +67,22 @@ public class UserVO {
 
 	public void setUserReg(String userReg) {
 		this.userReg = userReg;
+	}
+
+	public String getUserUpdReg() {
+		return userUpdReg;
+	}
+
+	public void setUserUpdReg(String userUpdReg) {
+		this.userUpdReg = userUpdReg;
+	}
+
+	public String getUserConnReg() {
+		return userConnReg;
+	}
+
+	public void setUserConnReg(String userConnReg) {
+		this.userConnReg = userConnReg;
 	}
 
 	public String getUserFavor01() {
@@ -83,5 +108,36 @@ public class UserVO {
 	public void setUserFavor03(String userFavor03) {
 		this.userFavor03 = userFavor03;
 	}
-	
+
+	public String getUserEtc01() {
+		return userEtc01;
+	}
+
+	public void setUserEtc01(String userEtc01) {
+		this.userEtc01 = userEtc01;
+	}
+
+	public String getUserEtc02() {
+		return userEtc02;
+	}
+
+	public void setUserEtc02(String userEtc02) {
+		this.userEtc02 = userEtc02;
+	}
+
+	public String getUserEtc03() {
+		return userEtc03;
+	}
+
+	public void setUserEtc03(String userEtc03) {
+		this.userEtc03 = userEtc03;
+	}
+
+	public String getUserEtc04() {
+		return userEtc04;
+	}
+
+	public void setUserEtc04(String userEtc04) {
+		this.userEtc04 = userEtc04;
+	}
 }

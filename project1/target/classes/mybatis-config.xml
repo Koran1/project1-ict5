@@ -13,18 +13,26 @@
 	<!-- type의 별칭 지정 -->
 	<typeAliases>
 		<typeAlias type="com.ict.mytravellist.ADMIN.vo.AdminVO" alias="adminvo" />
-		<typeAlias type="com.ict.mytravellist.WTHR.vo.PJWeatherVO" alias="pjwthrvo" />
+		<typeAlias type="com.ict.mytravellist.WTHR.vo.RegionVO" alias="regvo" />
+		<typeAlias type="com.ict.mytravellist.vo.WeatherVO"  alias="wthrvo" />
+		
 		<typeAlias type="com.ict.mytravellist.vo.UserVO" alias="uservo" />
-		<typeAlias type="com.ict.mytravellist.WTHR.vo.WeatherVO" alias="wthrvo" />
-		
-		<typeAlias type="com.ict.mytravellist.PLAN.vo.TravelDBVO" alias="trvlvo" />
-		
+		<typeAlias type="com.ict.mytravellist.vo.NoticeVO"  alias="noticevo" />
+		<typeAlias type="com.ict.mytravellist.vo.FAQVO"  alias="faqvo" />
+		<typeAlias type="com.ict.mytravellist.vo.QNAVO"  alias="qnavo" />
+				
+		<typeAlias type="com.ict.mytravellist.vo.KakaoVO"  alias="kvo" />
+		<typeAlias type="com.ict.mytravellist.vo.TourTalkVO"  alias="tourtvo" />
+		<typeAlias type="com.ict.mytravellist.vo.TravelDBVO"  alias="tdvo" />
+		<typeAlias type="com.ict.mytravellist.vo.TrvlPlanVO"  alias="tplvo" />
 		
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/travel_mapper.xml" />
 		<mapper resource="mappers/weather_mapper.xml" />
+		<mapper resource="mappers/add_mapper.xml" />
+		<mapper resource="mappers/main_mapper.xml" />
 		
 	</mappers>
 </configuration>

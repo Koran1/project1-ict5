@@ -1,0 +1,190 @@
+@charset "UTF-8";
+
+
+.header_start header_center header_end { 
+	height: 100px;
+	position: fixed;
+	align-items: center; /* 세로 중앙 정렬 */
+	justify-content: center; /* 가로 중앙 정렬 */
+	padding: 10px;
+	background-color: white;
+	box-shadow: 0 0 3px #7bbe6e;
+	z-index: 5;
+	}
+.header_start {}
+.header_center {}
+.header_end {}
+.header_container {
+	width: 100%;
+	position: fixed;
+	display: flex;
+	align-items: center; /* 세로 중앙 정렬 */
+	justify-content: center; /* 가로 중앙 정렬 */
+	padding: 10px;
+	background-color: white;
+	box-shadow: 0 0 3px #7bbe6e;
+	z-index: 5;
+}
+
+.header_wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 100px;
+	padding: 0px 16px; /* 상하 좌우 */
+}
+
+.header_start {
+	flex: 1 1 18%; /* 기본 비율 25% */
+}
+
+.header_title img {
+	width: 10%;
+	margin-left: 6px;
+}
+
+.header_center {
+	flex: 1 1 50%; /* 기본 비율 45% */
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header_search {
+	display: none;
+	margin-right: 5px;
+	border: none;
+	background-color: transparent;
+	font-size: 1.5em;
+}
+
+
+.header_form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.header_input_text {
+	width: calc(70% - 60px);
+	height: 50px;
+	border: 1px solid #7bbe6e;
+	border-right: none;
+	border-radius: 30px 0 0 30px;
+	padding-left: 15px;
+	font-size: 1em;
+}
+
+.header_input_text:focus {
+	border: 1px solid #7bbe6e; /* 클릭 시 테두리 유지 */
+	outline: none; /* 기본 아웃라인 제거 */
+	border-right: none;
+}
+
+.header_input_text::placeholder {
+	color: #7bbe6e;
+	transition: opacity 0.3s ease-in-out;
+}
+
+.header_input_button {
+	width: 60px;
+	height: 54px;
+	border: 1px solid #7bbe6e;
+	border-left: none;
+	border-radius: 0 30px 30px 0;
+	font-size: 1em;
+	background-color: white;
+	color: #7bbe6e;
+}
+
+.header_input_button:active {
+	width: 60px;
+	height: 54.2px;
+	background-color: #5d9652; /* 눌릴 때 색상 변경 */
+	border: 1px solid #7bbe6e;
+	border-left: none;
+	border-radius: 0 30px 30px 0;
+	font-size: 1em;
+}
+
+.header_input_button:active {
+	font-weight: bold;
+}
+
+.header_end {
+	display: flex;
+	flex: 1 1 32%; /* 기본 비율 30% */
+	font-size: 0.9rem;
+}
+
+.header_menu {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 1.2rem;
+	transition: font-weight 0.3s ease-in-out;
+	text-decoration: none; /* 밑줄 제거 */
+	color: inherit; /* 부모 요소의 텍스트 색상과 동일하게 설정 */
+}
+
+.header_menu:last-child {
+	margin-right: 10px;
+}
+
+.header_menu:hover {
+	color: #7bbe6e;
+}
+
+.header_menu img {
+	display: flex;
+	width: 50px;
+	height: auto;
+	margin: 20px 0 20px 0;
+	opacity: 0.7; /* 기본 상태에서 약간 투명하게 */
+	transition: opacity 0.3s ease-in-out; /* 부드러운 전환 효과 */
+}
+
+.header_menu img:hover {
+	opacity: 1; /* 완전히 불투명하게 */
+}
+.header_profile {
+	width: 40px;
+	height: 40px;
+	background-image: url('../images/profile-m.png');
+	background-size: 40px 40px;
+}
+
+
+.login_mypage {
+	border: 1px solid #ddf7d8;
+	border-radius: 30px;
+	background-color: #ddf7d8;
+	height: 50px;
+	padding-right: 5px;
+}
+
+.login {
+	display: flex;
+	font-size: 1.2rem;
+	transition: font-weight 0.3s ease-in-out;
+	text-decoration: none; /* 밑줄 제거 */
+	color: inherit; /* 부모 요소의 텍스트 색상과 동일하게 설정 */
+	margin-top: 40px;
+	margin-left: 2px;
+}
+
+.login:hover {
+	color: #7bbe6e;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ict.mytravellist.PLAN.service.TravelService;
-import com.ict.mytravellist.PLAN.vo.TravelDBVO;
 import com.ict.mytravellist.WTHR.service.WeatherService;
+import com.ict.mytravellist.vo.TravelDBVO;
 
 @Controller
 public class PlanController {
@@ -59,9 +59,20 @@ public class PlanController {
 	public ModelAndView goPLANCreate() { 
 		return new ModelAndView("PLAN/mytrvlplan_create");
 	}
+	
 	@RequestMapping("/mytrvlplan_list")
 	public ModelAndView goPLANList() { 
-		return new ModelAndView("PLAN/mytrvlplan_list");
+		ModelAndView mv = new ModelAndView("PLAN/mytrvlplan_list");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/mytrvlplan_list_detail")
+	public ModelAndView goPLANListDetail() { 
+		ModelAndView mv = new ModelAndView("PLAN/mytrvlplan_list_detail");
+		
+		
+		return mv;
 	}
 	
 	// 이거 아마 상모님한테 있을거임

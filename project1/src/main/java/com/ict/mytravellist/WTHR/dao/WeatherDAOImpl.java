@@ -6,9 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ict.mytravellist.WTHR.vo.PJWeatherVO;
 import com.ict.mytravellist.WTHR.vo.ResultMapVO;
-import com.ict.mytravellist.WTHR.vo.WeatherVO;
+import com.ict.mytravellist.vo.WeatherVO;
+import com.ict.mytravellist.WTHR.vo.RegionVO;
 
 @Repository
 public class WeatherDAOImpl implements WeatherDAO {
@@ -17,12 +17,12 @@ public class WeatherDAOImpl implements WeatherDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
-	public WeatherVO getRegInfo(String region) {
+	public RegionVO getRegInfo(String region) {
 		return sqlSessionTemplate.selectOne("reginfo.getreginfo", region);
 	}
 
 	@Override
-	public int insertWthrInfo(PJWeatherVO pvo) {
+	public int insertWthrInfo(WeatherVO pvo) {
 		return sqlSessionTemplate.insert("reginfo.insertwthrinfo", pvo);
 	}
 
@@ -32,7 +32,7 @@ public class WeatherDAOImpl implements WeatherDAO {
 	}
 
 	@Override
-	public List<PJWeatherVO> getWthrInfo(String region) {
+	public List<WeatherVO> getWthrInfo(String region) {
 		return sqlSessionTemplate.selectList("reginfo.getwhtrinfo", region);
 	}
 

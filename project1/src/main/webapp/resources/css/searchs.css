@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+.searchs_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    margin: 30px;
+    padding: 20px 0 0 10px;
+    gap: 20px; /* 아이템 간의 간격 */
+    margin-left: 100px;
+}
+
+.searchs_item {
+	width: 360px; /* 고정된 가로 크기 */
+	height: 500px; /* 고정된 높이 */
+	margin: 15px;
+	padding: 10px;
+	border: 0.5px solid gray;
+	border-radius: 10px;
+	box-sizing: border-box; /* padding 포함한 박스 크기 계산 */
+	display: flex; /* Flexbox 사용 */
+	flex-direction: column; /* 아이템을 세로로 정렬 */
+	align-items: center; /* 가로 가운데 정렬 */
+	overflow: hidden; /* 넘치는 내용 숨기기 */
+	background-color: #fff;
+}
+
+.searchs_img img {
+	width: 340px; /* 이미지 크기 조정 */
+	height: 300px; /* 고정된 높이 */
+	margin: 10px;
+	border-radius: 5px;
+	object-fit: cover; /* 비율 유지하며 잘라내기 */
+}
+
+.searchs_info {
+	width: 100%; /* 가로폭 맞추기 */
+	max-height: 100px; /* 텍스트 영역 최대 높이 */
+	margin-top: 20px;
+	display: flex;
+	text-align: left;
+}
+
+.searchs_text {
+	flex: 1; 
+	font-size: 1.2em;
+	padding-left : 5px;
+	text-align: letf;
+	padding-left: 5px;
+	margin-top: auto; /* 항상 하단에 고정되도록 설정 */
+	margin-bottom: 10px;
+}
+
+.searchs_title {
+	font-size: 1em;
+	margin-bottom: 0.5em;
+	font-weight: bold;
+}
+
+.searchs_addr {
+	font-size: 0.7em;
+	margin-bottom: 0.5em;
+}
+
+.searchs_tel {
+	font-size: 0.8em;
+	text-align: letf;
+}
+
+.searchs_result {
+	margin: 100px 50px 0 20px;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+.menu_region {
+	width: 30px;
+}
+
+.scroll-top-btn {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	background-color: #deebe1;
+	color: rgb(45, 43, 43);
+	border: none;
+	padding: 15px;
+	border-radius: 50%;
+	font-size: 30px;
+	font-weight: bold;
+	cursor: pointer;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	display: block;
+}
