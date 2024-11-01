@@ -4,14 +4,13 @@
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="traveldb">
 	<select id="list" resultType="tdvo">
-		select travelIdx, trrsrtNm, rdnmadr, lnmadr, trrsrtIntrcn, placeImg01, placeImg02, placeImg03, placeImg04, region, latitude, longitude from travellistdb
+		select * from travellistdb
 	</select>
 	<select id="onelist" parameterType="String" resultType="tdvo">
-		select trrsrtNm, rdnmadr, lnmadr, trrsrtIntrcn, placeImg01, placeImg02, placeImg03, placeImg04, region, latitude, longitude from travellistdb
-		where travelIdx = #{travelIdx}
+		select * from travellistdb where travelIdx = #{travelIdx}
 	</select>
 	<select id="onereg" parameterType="String" resultType="tdvo">
-		select trrsrtNm, rdnmadr, lnmadr, trrsrtIntrcn, placeImg01, placeImg02, placeImg03, placeImg04, latitude, longitude from travellistdb
+		select * from travellistdb
 		where region = #{region} order by rand() limit 1;
 	</select>
 </mapper>
