@@ -28,4 +28,16 @@ public interface AddService {
 	
 	// QNA 상세화면-관리자
 	public QNAVO getQNADetailAdmin(String qnaIdx);
+	
+	// FAQ 페이징 처리 - 전체 게시물의 수
+	public int getTotalCount();
+	
+	// FAQ 페이징 처리를 위한 리스트
+	public List<FAQVO> getFAOList(int offset, int limit);
+	
+	// QNA 페이징 처리를 위한 리스트
+	public List<QNAVO> getQNAList(int offset, int limit);
+	
+	// 공지사항 검색 기능
+	public List<NoticeVO> getNoticeSearch(String keyword);
 }

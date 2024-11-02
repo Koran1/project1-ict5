@@ -123,6 +123,7 @@
         color: gray;
         text-decoration: none;
         cursor: pointer;
+        display: block;
     }
     .tab-button.active {
         background-color: #f5f5f5;
@@ -171,22 +172,16 @@
 					</thead>
 					<tbody>
 						<c:choose>
-							<c:when test="${empty notice_list }">
+							<c:when test="${empty searchResults }">
 								<tr>
-									<td colspan="2"><h3>공지사항이 없습니다.</h3></td>
+									<td colspan="2"><h3>검색 결과가 없습니다.</h3></td>
 								</tr>
 							</c:when>
 							<c:otherwise>
-								<c:forEach items="${notice_list }" var="k">
+								<c:forEach items="${searchResults }" var="k">
 									<tr>
 										<td class="noticeSubject" style="background-color: #99CC99"><a href="/add_notice_detail?noticeIdx=${k.noticeIdx }" class="subject-detail">${k.noticeSubject }</a></td>
 										<td class="noticeReg" style="background-color: #99CC99"	>${k.noticeReg.substring(0, 10)}</td>
-									</tr>
-								</c:forEach>
-								<c:forEach items="${notice_list2 }" var="k">
-									<tr>
-										<td class="noticeSubject"><a href="/add_notice_detail?noticeIdx=${k.noticeIdx }" class="subject-detail">${k.noticeSubject }</a></td>
-										<td class="noticeReg">${k.noticeReg.substring(0, 10)}</td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>
@@ -197,7 +192,7 @@
 			
 			<div class="search-container">
 				<form action="/add_notice_search">
-					<input type="text" name="keyword" placeholder="제목 또는 내용 검색">
+					<input type="text" name="keyword" value="${keyword}">
 					<button type="submit" id="search_btn">검색</button>
 				</form>
 			</div>

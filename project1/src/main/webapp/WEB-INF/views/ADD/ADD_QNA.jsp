@@ -116,10 +116,14 @@
         color: black;
     }
     .tab-notice-menu {
-    	display: block;
         text-decoration: none;
         color: inherit;
     }
+    .tab-button a {
+    	display: block;
+    	text-decoration: none;
+    	color: inherit;
+	}
 </style>
 </head>
 <body>

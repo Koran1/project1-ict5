@@ -39,15 +39,32 @@
         LIMIT 10000
     </select>
 	
+	<!-- 공지사항 검색 기능 -->
+	<select id="adds.noticeSearch" parameterType="String" resultType="noticevo">
+		SELECT * FROM pjnotice 
+        WHERE noticeSubject LIKE CONCAT('%', #{keyword}, '%') 
+        OR noticeContent LIKE CONCAT('%', #{keyword}, '%') 
+        ORDER BY noticeIdx DESC
+	</select>
+	
     <!-- 공지사항 상세화면 -->
     <select id="noticeDetail" parameterType="String" resultType="noticevo">
     	select * from pjnotice where noticeIdx=#{noticeIdx}
     </select>
     
     <!-- FAQ 초기화면 -->
+    <!--
     <select id="faqList" resultType="faqvo">
     	select * from pjfaq
     </select>
+    -->
+    <select id="faqCount" resultType = "int">
+		select count(*) from pjfaq
+	</select>
+	
+	<select id="faqPageList" parameterType="Map"  resultType = "faqvo">
+		select * from pjfaq limit #{limit} offset #{offset}
+	</select>
     
     <!-- QNA 초기화면 -->
     <select id="qnaList" resultType="qnavo">

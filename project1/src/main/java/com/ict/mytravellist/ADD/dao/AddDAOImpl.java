@@ -1,6 +1,8 @@
 package com.ict.mytravellist.ADD.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +55,31 @@ public class AddDAOImpl implements AddDAO {
 	@Override
 	public QNAVO getQNADetailAdmin(String qnaIdx) {
 		return sqlSessionTemplate.selectOne("adds.qnaDetailAdmin", qnaIdx);
+	}
+
+	@Override
+	public int getTotalCount() {
+		return sqlSessionTemplate.selectOne("adds.faqCount");
+	}
+
+	@Override
+	public List<FAQVO> getFAOList(int offset, int limit) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("limit", limit);
+		map.put("offset", offset);
+		return sqlSessionTemplate.selectList("adds.faqPageList", map);
+	}
+
+	@Override
+	public List<QNAVO> getQNAList(int offset, int limit) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("limit", limit);
+		map.put("offset", offset);
+		return sqlSessionTemplate.selectList("adds.qnaPageList", map);
+	}
+
+	@Override
+	public List<NoticeVO> getNoticeSearch(String keyword) {
+		return sqlSessionTemplate.selectList("adds.noticeSearch", keyword);
 	}
 }

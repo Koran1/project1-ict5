@@ -55,4 +55,24 @@ public class AddServiceImpl implements AddService {
 	public QNAVO getQNADetailAdmin(String qnaIdx) {
 		return addDAO.getQNADetail(qnaIdx);
 	}
+
+	@Override
+	public int getTotalCount() {
+		return addDAO.getTotalCount();
+	}
+
+	@Override
+	public List<FAQVO> getFAOList(int offset, int limit) {
+		return addDAO.getFAOList(offset, limit);
+	}
+
+	@Override
+	public List<QNAVO> getQNAList(int offset, int limit) {
+		return addDAO.getQNAList(offset, limit);
+	}
+
+	@Override
+	public List<NoticeVO> getNoticeSearch(String keyword) {
+		return addDAO.getNoticeSearch(keyword);
+	}
 }
