@@ -43,6 +43,12 @@ public class TourTalkDAOImpl implements TourTalkDAO{
 		return sqlSessionTemplate.update("tourTalk.hitupdate", userIdx);
 	}
 
+	@Override
+	public void insertTourTalk(TourTalkVO tourTalkVO) {
+		 sqlSessionTemplate.insert("tourTalk.insertTourTalk", tourTalkVO);
+		
+	}
+
 	/*
 	 * @Override public int getTotalCount() { return
 	 * sqlSessionTemplate.selectOne("TourTalk.count"); }

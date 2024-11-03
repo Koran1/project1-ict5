@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ict.mytravellist.vo.TourTalkVO;
 import com.ict.mytravellist.vo.TravelDBVO;
 import com.ict.mytravellist.vo.WeatherVO;
 
@@ -63,7 +64,7 @@ public class MainDAOImpl implements MainDAO{
     public List<TravelDBVO> getDetailList(String travelIdx) {
         try {
             List<TravelDBVO> list = sqlSessionTemplate.selectList("main.getDetailList", travelIdx);
-            System.out.println("getDetailList MainDAO 통과");
+            // System.out.println("getDetailList MainDAO 통과");
             return list;
         } catch (Exception e) {
             System.out.println("getDetailList 검색 중 오류 발생: " + e.getMessage());
@@ -89,6 +90,11 @@ public class MainDAOImpl implements MainDAO{
 	    map.put("limit", limit);
 	    map.put("keyword", keyword);
 	    return sqlSessionTemplate.selectList("main.page_list", map);
+	}
+
+	@Override
+	public int insertTourTalk(TourTalkVO tourtvo) {
+		return sqlSessionTemplate.insert("tourTalk.insert", tourtvo);		
 	}
 
 }

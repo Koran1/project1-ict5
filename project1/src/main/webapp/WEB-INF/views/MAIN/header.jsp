@@ -13,6 +13,7 @@
     	width: 100%;
     	position: fixed;
     	background-color: white;
+    	z-index: 1000;
     }
     </style>
     <link rel="canonical" href="https://getbootstrap.kr/docs/5.3/examples/headers/">
@@ -36,13 +37,13 @@
 	        </form>
 	        
 	        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-	          <li><a href="/notice_go" class="nav-link px-2 link-body-emphasis"><b>Notice</b></a></li>
+	          <li><a href="/notice_go" class="nav-link px-2 link-body-emphasis"><b>공지사항</b></a></li>
 				<c:choose>
 				 <c:when test="${empty userId}">
-	          		<li><a href="/mem_login" class="nav-link px-2 link-body-emphasis"><b>Travel Plan</b></a></li>
+	          		<li><a href="/mem_login" class="nav-link px-2 link-body-emphasis"><b>여행계획</b></a></li>
 				 </c:when>
 				 <c:otherwise>
-				   	<li><a href="/trvlPlan_go" class="nav-link px-2 link-body-emphasis"><b>Travel Plan</b></a></li>
+				   	<li><a href="/trvlPlan_go" class="nav-link px-2 link-body-emphasis"><b>여행계획</b></a></li>
 				 </c:otherwise>
 				</c:choose>
 	        </ul>

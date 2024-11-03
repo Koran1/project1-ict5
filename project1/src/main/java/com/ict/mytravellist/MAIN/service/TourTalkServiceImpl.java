@@ -42,6 +42,12 @@ public class TourTalkServiceImpl implements TourTalkService{
 		return tourTalkDAO.getHitUpdate(userIdx);
 	}
 
+	@Override
+	public void insertTourTalk(TourTalkVO tourTalkVO) {
+		tourTalkDAO.insertTourTalk(tourTalkVO);
+		
+	}
+
 	/*
 	 * @Override public int getTotalCount() { return tourDAO.getTotalCount(); }
 	 * 

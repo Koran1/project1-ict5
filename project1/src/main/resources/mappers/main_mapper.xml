@@ -82,4 +82,9 @@
 		ORDER BY travelidx DESC 
 		LIMIT #{limit}, #{offset}
 	</select>
+	
+	<insert id="insert" parameterType="tourtvo">
+		insert into tourTalk(tourTalkIdx, userId, tourTalkContent, tourTalkReg, tourTalkEtc01, hit)
+		values(#{tourTalkIdx}, #{userId},#{tourTalkContent}, now(), #{tourTalkEtc01}, 0)
+	</insert>
 </mapper>

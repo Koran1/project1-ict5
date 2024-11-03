@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ict.mytravellist.MAIN.dao.MainDAO;
+import com.ict.mytravellist.MAIN.dao.TourTalkDAO;
+import com.ict.mytravellist.vo.TourTalkVO;
 import com.ict.mytravellist.vo.TravelDBVO;
 import com.ict.mytravellist.vo.WeatherVO;
 
@@ -14,6 +16,9 @@ public class MainServiceImpl implements MainService {
 		
 	@Autowired
 	private MainDAO mainDAO;
+	
+	@Autowired
+    private TourTalkDAO tourTalkDAO;
 	
 	// 랜덤 지역 이미지 불러오기
 	@Override
@@ -60,5 +65,11 @@ public class MainServiceImpl implements MainService {
 	public List<TravelDBVO> getSearchList(String keyword) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int insertTourTalk(TourTalkVO tourtvo) {
+		return mainDAO.insertTourTalk(tourtvo);
+		
 	}
 }

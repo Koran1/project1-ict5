@@ -95,7 +95,9 @@
 	max-height: 100%;
 	object-fit: cover;
 	border-radius: 8px;
-	height: 250px;
+	min-height: 250px;
+	margin: 0;
+	padding: 0;
 }
 
 /* 여행 정보 */
@@ -105,14 +107,9 @@
 	padding-left: 10px;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
-	margin-top: 20px;
-	min-height: 120px;
+	padding-top: 20px;
 }
 
-.travel_location {
-	margin: 0 auto;
-}
 
 .travel_location_title {
 	font-size: 20px;
@@ -140,8 +137,11 @@
 	font-size: 20px;
 	font-weight: bold;
 	color: gray;
-	padding-left: 50px;
+	padding-right: 30px;
+	list-style-type: none;
 }
+.disable{color: lightgray;}
+.now{color: black;}
 </style>
 </head>
 <body>
@@ -154,9 +154,9 @@
 
 		<div class="main_center">
 			<div class="travel_result">
-				<p>검색결과 ${keyword} ${count}건</p>
+				<p>검색결과: ${keyword} ${count}건</p>
 				<br> <select id="region-filter">
-					<option value="0">전체</option>
+					<option value="0">:: 전체 ::</option>
 					<option value="1">서울</option>
 					<option value="2">부산</option>
 					<option value="3">대구</option>
@@ -185,22 +185,20 @@
 							<c:forEach var="k" items="${list}">
 								<div class="travel_box" data-category="${k.region}">
 									<div class="travel_image">
-										<a href="/travelDetail_go?travelIdx=${k.travelIdx}"> <img
-											alt="관광지 이미지" src="${k.placeImg01}"></a>
+										<a href="/travelDetail_go?travelIdx=${k.travelIdx}"> 
+										<img alt="관광지 이미지" src="${k.placeImg01}"></a>
 									</div>
 									<div class="travel_info">
-										<div class="travel_location">
-											<p class="travel_location_title">${k.trrsrtNm}</p>
-											<c:choose>
-												<c:when test="${empty k.rdnmadr}">
-													<p class="travel_location_addr">${k.lnmadr}</p>
-												</c:when>
-												<c:otherwise>
-													<p class="travel_location_addr">${k.rdnmadr}</p>
-												</c:otherwise>
-											</c:choose>
-											<p class="travel_location_phone">☎: ${k.phoneNumber}</p>
-										</div>
+										<p class="travel_location_title">${k.trrsrtNm}</p>
+										<c:choose>
+											<c:when test="${empty k.rdnmadr}">
+												<p class="travel_location_addr">${k.lnmadr}</p>
+											</c:when>
+											<c:otherwise>
+												<p class="travel_location_addr">${k.rdnmadr}</p>
+											</c:otherwise>
+										</c:choose>
+										<p class="travel_location_phone">☎: ${k.phoneNumber}</p>
 									</div>
 								</div>
 							</c:forEach>

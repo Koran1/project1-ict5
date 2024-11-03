@@ -35,4 +35,5 @@ public interface TourTalkDAO{
 	 * int getCommentInsert(CommVO cvo); // 댓글 삭제 public int getCommentDelete(String
 	 * c_idx);
 	 */  
+    public void insertTourTalk(TourTalkVO tourTalkVO);
 }
